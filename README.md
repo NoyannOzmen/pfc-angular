@@ -1,59 +1,35 @@
-# PfcAngular
+# Pet Foster Connect
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.18.
+<!-- <img src="./front/public/icons/logo.svg" alt="Logo de PetFosterConnect" width="300"/> -->
 
-## Development server
+## Disclaimer
 
-To start a local development server, run:
+Ce dépôt contient une conversion de la partie front-end du projet PetFosterConnect en Angular, tout en préservant ses fonctionnalités.
+Ne contenant que la partie front, ce dépôt se doit d'être utilisé avec une des API pré-existantes.
 
-```bash
-ng serve
-```
+## Présentation
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Pet Foster Connect permet de mettre en relation des familles d’accueil pour les animaux avec des associations de protection animale.
 
-## Code scaffolding
+PFC permet aux gens de jouer un rôle fondamental en accueillant des animaux en attendant leur adoption définitive afin de leur offrir une meilleure vie.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+PFC a pour vocation de répondre à plusieurs besoins :
 
-```bash
-ng generate component component-name
-```
+- Les animaux aimeraient bien un toit, et les gens aiment les animaux (en général)
+- Permettre aux associations / refuges de communiquer sur les animaux nécessitant une place au chaud
+- Permettre aux familles d'accueil de se faire connaître et de se mettre en relation avec les refuges / associations
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Technologies utilisées
 
-```bash
-ng generate --help
-```
+Pour réaliser cette application, nous nous sommes servis de :
 
-## Building
+|   **Nom**      |     **Utilité**   |
+| -------------- | ----------------- |
+| Angular | Framework Front |
+| TypeScript | Langage Front |
+| Tailwind | CSS |
+| ... | ... |
 
-To build the project run:
+## Installation
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Bientôt disponible
