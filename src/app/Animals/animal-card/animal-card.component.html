@@ -1,11 +1,13 @@
 <div class="bg-zoning rounded-lg shadow md:flex-col">
   <div class="relative md:w-full flex justify-center items-center">
-<!--     { url ? (
-      <img class="font-body rounded-lg" src={`${import.meta.env.VITE_API_URL}` + `${url}`} alt="Photo de {{ animal().nom }}"></img>
-    ) : (
-      <img class="font-body rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
-    )} -->
-    <img class="font-body rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
+      @if ( animal().images_animal ) {
+        @for(image of animal().images_animal; track $index) {
+          <img class="font-body rounded-lg"
+          [src]="image.url" alt="Photo de {{ animal().nom }}"/>
+        }
+      } @else {
+        <img class="font-body rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
+      }
   </div>
   <div class="flex-auto text-center">
     <div class="flex flex-wrap">

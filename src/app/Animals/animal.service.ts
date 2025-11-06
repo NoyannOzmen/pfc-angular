@@ -10,6 +10,9 @@ export class AnimalService {
 
   async getAllAnimals(): Promise<AnimalInfos[]> {
       const animals = await fetch(this.url).then(res => res.json());
+      animals.forEach((animal : AnimalInfos) => {
+        animal.images_animal[0].url = environment.apiUrl + animal.images_animal[0].url;
+      });
       return (await animals) ?? [];
   }
 
