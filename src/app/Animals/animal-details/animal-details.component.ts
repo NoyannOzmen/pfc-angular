@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AnimalService } from '../animal.service';
 import { AnimalInfos } from '../../models/models';
 import { RouterModule } from '@angular/router';
+import { CarouselComponent } from '../../Shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-animal-details',
-  imports: [RouterModule],
+  imports: [RouterModule, CarouselComponent],
   templateUrl: './animal-details.component.html',
   styleUrl: './animal-details.component.css'
 })

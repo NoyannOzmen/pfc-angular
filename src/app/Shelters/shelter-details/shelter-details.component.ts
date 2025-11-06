@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AssociationInfos } from '../../models/models';
 import { ShelterService } from '../shelter.service';
+import { CarouselComponent } from '../../Shared/carousel/carousel.component';
 
 @Component({
   selector: 'app-shelter-details',
-  imports: [RouterModule],
+  imports: [RouterModule, CarouselComponent],
   templateUrl: './shelter-details.component.html',
   styleUrl: './shelter-details.component.css'
 })
