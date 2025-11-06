@@ -12,4 +12,11 @@ export class AnimalService {
       const animals = await fetch(this.url).then(res => res.json());
       return (await animals) ?? [];
   }
+
+  async getAnimalById(id: number): Promise<AnimalInfos | undefined> {
+    const animal = await fetch(`${this.url}/${id}`).then(res=>res.json());
+    animal.images_animal[0].url = environment.apiUrl + animal.images_animal[0].url;
+    animal.refuge.images_association[0].url = environment.apiUrl + animal.refuge.images_association[0].url;
+    return (await animal) ?? {};
+  }
 }

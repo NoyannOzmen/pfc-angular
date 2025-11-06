@@ -50,7 +50,7 @@ export interface AssociationInfos {
   telephone: string;
   site: string | null;
   description: string | null;
-  images_associatios: MediaInfos;
+  images_association: MediaInfos[];
   identifiant_association: UtilisateurInfos
 }
 
@@ -65,11 +65,11 @@ export interface AnimalInfos {
   description: string;
   statut: string;
   espece: EspeceInfos;
-  images_animal: MediaInfos;
+  images_animal: MediaInfos[];
   refuge: AssociationInfos;
   accueillant: FamilleInfos | null;
   demandes: DemandeInfos;
-  tags: TagInfos
+  tags: TagInfos[]
 }
 
 export interface DemandeInfos {
