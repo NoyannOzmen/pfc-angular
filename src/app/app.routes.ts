@@ -62,7 +62,7 @@ export const routes: Routes = [
     ]
   },
   /* logged shelter routes */
-  { path: 'associations/inscription', component: ShelterRegisterComponent, title: 'Créer un compte association' },
+  { path: 'association/inscription', component: ShelterRegisterComponent, title: 'Créer un compte association' },
   //TODO Actual Route Guards
   { path: 'associations/profil',
     component: ShelterDashboardComponent,
