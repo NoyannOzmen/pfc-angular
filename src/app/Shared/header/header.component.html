@@ -1,6 +1,6 @@
 <header id="top" class="w-screen flex flex-row bg-zoning shadow-xl flex-none">
 
-  <a href="/" class="flex flex-row grow-0 p-4">
+  <a [routerLink]="['/']" class="flex flex-row grow-0 p-4">
     <img src="/icons/logo.svg" alt="Logo de Pet Foster Connect" class="size-20" />
     <div class="grow-0 py-4 px-2">
       <h1 class="stroke-title font-grands pt-2">Pet&nbsp;Foster<br />Connect<br /></h1>
@@ -21,7 +21,7 @@
 
       <!-- Social Media -->
       <nav class="flex flex-row flex-auto justify-center p-3 gap-2">
-          <a href="#" class="" tabIndex={-1} >
+          <a [routerLink]="[]" class="" tabIndex={-1} >
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0,0,256,256">
               <g fill="#fffbe4" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter"
               strokeMiterlimit="10" strokeDasharray="" strokeDashoffset="0" fontFamily="none" fontWeight="none"
@@ -35,7 +35,7 @@
             </svg>
           </a>
 
-          <a href="#" class="" tabIndex={-1} >
+          <a [routerLink]="[]" class="" tabIndex={-1} >
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35" height="35" viewBox="0,0,256,256">
               <g fill="#fffbe4" fillRule="nonzero" stroke="none" strokeWidth="1" strokeLinecap="butt" strokeLinejoin="miter"
               strokeMiterlimit="10" strokeDasharray="" strokeDashoffset="0" fontFamily="none" fontWeight="none"
@@ -55,19 +55,19 @@
     <nav class="flex flex-auto grow  place-self-center md:place-self-end pb-4 pr-8 text-m md:text-base xl:text-xl text-center lg:text-left">
       <ul class="flex flex-auto flex-col md:flex-row md:place-content-end md:gap-5 pl-4 gap-2">
             <li class="hover:text-accents1-light place-self-start item-link">
-              <a end tabIndex={0} href="/animaux" class={isCurrentPage}>Nos Animaux</a>
+              <a end tabIndex={0} [routerLink]="['/animaux']" class={isCurrentPage}>Nos Animaux</a>
             </li>
             <li class="hover:text-accents1-light place-self-start item-link">
-              <a end tabIndex={0} href="/associations" class={isCurrentPage}>Nos Partenaires</a>
+              <a end tabIndex={0} [routerLink]="['/associations']" class={isCurrentPage}>Nos Partenaires</a>
             </li>
             <li class="hover:text-accents1-light place-self-start item-link">
-              <a end tabIndex={0} href="/a-propos" class={isCurrentPage}>Qui sommes&#x2011;nous&nbsp;?</a>
+              <a end tabIndex={0} [routerLink]="['/a-propos']" class={isCurrentPage}>Qui sommes&#x2011;nous&nbsp;?</a>
             </li>
             <li class="hover:text-accents1-light place-self-start item-link">
-              <a end tabIndex={0} href="/faq" class={isCurrentPage}>Foire aux Questions</a>
+              <a end tabIndex={0} [routerLink]="['/faq']" class={isCurrentPage}>Foire aux Questions</a>
             </li>
             <li class="hover:text-accents1-light place-self-start item-link">
-              <a end tabIndex={0} href="/devenir-famille-d-accueil" class={isCurrentPage}>Devenez Famille&nbsp;d'accueil</a>
+              <a end tabIndex={0} [routerLink]="['/devenir-famille-d-accueil']" class={isCurrentPage}>Devenez Famille&nbsp;d'accueil</a>
             </li>
       </ul>
     </nav>

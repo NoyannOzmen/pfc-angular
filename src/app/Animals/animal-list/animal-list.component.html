@@ -86,20 +86,13 @@
   }
   -->
 
-  <div class="grid grid-flow-row-dense grid-cols-3 gap-3 m-3">
-    @for(animal of animalList; track $index) {
-      <app-animal-card [animal]="animal"></app-animal-card>
-    }
-  </div>
-
-  <!--
-  { sheltered.length ? (
+<!--   @if(sheltered) { -->
     <div class="grid grid-flow-row-dense grid-cols-3 gap-3 m-3">
-      {animalItems}
+      @for(animal of animalList; track $index) {
+        <app-animal-card [animal]="animal"></app-animal-card>
+      }
     </div>
-  ) : (
+<!--   } @else {
     <h3 class="font-grands text-2xl w-full my-2 text-center">Aucun animal ne correspond à votre recherche</h3>
-  )}
-  -->
-
+  } -->
 </main>

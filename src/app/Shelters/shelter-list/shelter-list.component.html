@@ -63,17 +63,13 @@
     </div>
   } -->
 
-  <div class="grid grid-cols-3 gap-3 m-3">
-    @for(shelter of shelterList; track $index) {
-      <app-shelter-card [shelter]="shelter"></app-shelter-card>
-    }
-  </div>
-
-<!--   { searchedShelters.length ? (
+<!--   @if(searchedShelters) { -->
     <div class="grid grid-cols-3 gap-3 m-3">
-      {shelterItems}
+      @for(shelter of shelterList; track $index) {
+        <app-shelter-card [shelter]="shelter"></app-shelter-card>
+      }
     </div>
-  ) : (
+<!--   } @else {
     <h3 class="font-grands text-2xl w-full my-2 text-center">Aucun refuge ne correspond à votre recherche</h3>
-  )} -->
+  } -->
 </main>
