@@ -14,16 +14,23 @@ import { SearchService } from '../../Shared/search.service';
 export class AnimalListComponent {
   animalList: AnimalInfos[] = [];
   animalService: AnimalService = inject(AnimalService);
+  filteredAnimalList : AnimalInfos[] = [];
 
   speciesList: EspeceInfos[] = [];
   tagList: TagInfos[] = [];
   searchService: SearchService = inject(SearchService);
+
+  isHidden = true;
+  toggleFilters() {
+    this.isHidden = !this.isHidden
+  };
 
   constructor() {
     this.animalService
       .getAllAnimals()
       .then((animalList: AnimalInfos[]) => {
         this.animalList = animalList;
+        this.filteredAnimalList = animalList;
       });
 
     this.searchService
@@ -37,5 +44,51 @@ export class AnimalListComponent {
       .then((speciesList: EspeceInfos[]) => {
         this.speciesList = speciesList;
       });
+  }
+
+  filterResultsSmall(especeDropdownSmall: string) {
+    if (!especeDropdownSmall) {
+      this.filteredAnimalList = this.animalList;
+      return;
+    }
+    this.filteredAnimalList = this.animalList.filter((animal) =>
+      animal?.espece.nom.toLowerCase().includes(especeDropdownSmall.toLowerCase()),
+    );
+  }
+
+  filterResultsFull(especeDropdownFull: string, sexe : string, minAge : number, maxAge : number, /* tags : Array<string>, */ dptSelect : string) {
+    if (!especeDropdownFull && !dptSelect && !minAge && !maxAge && !sexe /* && !tags */) {
+      this.filteredAnimalList = this.animalList;
+      return;
+    }
+    if(especeDropdownFull) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
+        animal.espece.nom.toLowerCase().includes(especeDropdownFull.toLowerCase())
+    )} else { this.filteredAnimalList = this.filteredAnimalList }
+
+    if(sexe) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
+        animal.sexe.toLowerCase() === sexe.toLowerCase()
+    )} else { this.filteredAnimalList = this.filteredAnimalList }
+
+    if(dptSelect) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
+        animal.refuge.code_postal.startsWith(dptSelect)
+    )} else { this.filteredAnimalList = this.filteredAnimalList }
+
+    if(minAge) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
+        animal.age > minAge
+    )} else { this.filteredAnimalList = this.filteredAnimalList }
+
+    if(maxAge) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
+        animal.age < maxAge
+    )} else { this.filteredAnimalList = this.filteredAnimalList }
+
+    /* if(tags.length) {
+      this.filteredAnimalList = this.animalList.filter((animal) =>
+        animal.tags.nom.includes(this.tag.nom)
+    )} */
   }
 }

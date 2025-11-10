@@ -15,7 +15,6 @@ export class SearchService {
 
   async getAllTags(): Promise<TagInfos[]> {
       const tags = await fetch(`${this.url}/tags`).then(res => res.json());
-      console.log(tags)
       return (await tags) ?? [];
   }
 }

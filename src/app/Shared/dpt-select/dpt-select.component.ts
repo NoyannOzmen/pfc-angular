@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-dpt-select',
   imports: [],
   template: `
-    <option value="default" disabled hidden>--Choisissez un département--</option>
+    <option value="">--Choisissez un département--</option>
     <option value="01">01 - Ain</option>
     <option value="02">02 - Aisne</option>
     <option value="03">03 - Allier</option>
