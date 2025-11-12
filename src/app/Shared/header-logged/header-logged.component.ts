@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from "@angular/router";
+import { AuthService } from '../../auth.service';
+import { UtilisateurInfos } from '../../models/models';
 
 @Component({
   selector: 'app-header-logged',
@@ -8,7 +10,10 @@ import { RouterModule } from "@angular/router";
   styleUrl: './header-logged.component.css'
 })
 export class HeaderLoggedComponent {
-  //TODO Remove Placeholder value
-  isFoster : boolean = true;
-  isShelter : boolean = false;
+  authService : AuthService = inject(AuthService)
+  logOut = this.authService.logOut
+  user : UtilisateurInfos = this.authService.getUserData();
+
+  isShelter = this.authService.hasRole('shelter')
+  isFoster = this.authService.hasRole('foster')
 }

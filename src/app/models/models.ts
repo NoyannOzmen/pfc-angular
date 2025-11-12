@@ -68,7 +68,7 @@ export interface AnimalInfos {
   images_animal: MediaInfos[];
   refuge: AssociationInfos;
   accueillant: FamilleInfos | null;
-  demandes: DemandeInfos;
+  demandes: DemandeInfos[];
   tags: TagInfos[]
 }
 

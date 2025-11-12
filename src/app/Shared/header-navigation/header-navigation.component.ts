@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderLoggedComponent } from '../header-logged/header-logged.component';
 import { HeaderLoginComponent } from '../header-login/header-login.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-header-navigation',
@@ -9,6 +10,6 @@ import { HeaderLoginComponent } from '../header-login/header-login.component';
   styleUrl: './header-navigation.component.css'
 })
 export class HeaderNavigationComponent {
-  //TODO Remove placeholder value
-  isLogged : boolean = false;
+  authService: AuthService = inject(AuthService)
+  isAuthenticated = this.authService.isAuthenticated
 }

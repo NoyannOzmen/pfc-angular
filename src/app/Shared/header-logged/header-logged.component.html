@@ -1,9 +1,9 @@
 <li class="border-2 border-accents2-dark max-[767px]:border-b-fond md:mr-4 md:border-r-fond px-4 max-[767px]:pb-2 place-self-center md:place-self-start pl-2">
   @if (isShelter) {
-    <a [routerLink]="['/associations/profil']">Bonjour : <!-- {{ user.refuge.nom }} --></a>
+    <a [routerLink]="['/associations/profil']">Bonjour : {{ user.refuge?.nom }}</a>
   }
   @if (isFoster) {
-    <a [routerLink]="['/famille/profil']">Bonjour : <!-- {{ user.accueillant.prenom }} ? `${{ user.accueillant.prenom }}` : `${{ user.accueillant.nom }}` --></a>
+    <a [routerLink]="['/famille/profil']">Bonjour : @if(user.accueillant?.prenom) { {{ user.accueillant?.prenom }} } @else { {{ user.accueillant?.nom }} }</a>
   }
 </li>
 <li class="border-2 border-accents2-dark max-[767px]:border-b-fond  md:border-r-fond px-4 pr-6 max-[767px]:pb-2 place-self-center md:place-self-start">
@@ -16,5 +16,5 @@
 </li>
 
 <li id="log-out" class="border-2 border-accents2-dark place-self-center md:place-self-start pl-2">
-  <p class="hover:text-accents1-light" onClick={auth.logOut}>Se Déconnecter</p>
+  <p class="hover:text-accents1-light" (click)="logOut()">Se Déconnecter</p>
 </li>

@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from '@ang
 import { AuthService } from '../auth.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  /* const authService = inject(AuthService);
-  return authService.isAuthenticated(); */
-  return true;
+  const authService = inject(AuthService);
+  return authService.isAuthenticated();
 };
