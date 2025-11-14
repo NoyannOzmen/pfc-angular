@@ -1,1 +1,60 @@
-<p>foster-request works!</p>
+<main class="justify-self-stretch flex-1">
+  <h2 class="font-grands text-3xl text-center my-2 py-6">Bienvenue sur votre espace personnel</h2>
+  <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+
+    <nav class="flex flex-wrap justify-center md:justify-start">
+      <ul class="flex flex-wrap-reverse gap-x-2 mx-3 justify-center font-semibold md:justify-start md:ml-10 text-xl">
+        <li><a [routerLink]="['/famille/profil']" tabIndex={0}><button id="dashbtn-1" class="dashbtn" tabIndex={-1}>Profil</button></a></li>
+        <li><a [routerLink]="['/famille/profil/demandes']" tabIndex={0}><button id="dashbtn-2" class="dashbtn dashbtn-active" tabIndex={-1}>Demandes</button></a></li>
+      </ul>
+      <div class="mx-2 grow w-[90%] h-2 bg-accents1-dark rounded-t-lg"></div>
+    </nav>
+
+    <div class="font-body bg-zoning rounded-lg shadow mb-4">
+
+      <section class="flex flex-wrap justify-center" id="dashboard-container">
+
+        <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Gestion des demandes d'accueil</h3>
+
+        <div class="container w-[80%]">
+
+          <div class="row w-full text-center my-6">
+            <div class="col w-full text-center my-6">
+              @if (currentRequests.length > 0) {
+                <h4 class="w-full text-center font-grands text-2xl my-4">Demandes en cours</h4>
+                  <table class="table text-center w-full">
+                    <thead class="border-none bg-zoning text-sm font-grands">
+                      <tr>
+                        <th colspan="3" scope="colgroup">Nom Animal</th>
+                        <th colspan="3" scope="colgroup">Demande</th>
+                      </tr>
+                    </thead>
+                    @for(demande of currentRequests; track $index) {
+                        <tbody>
+                          <tr (click)="toggle()" tabIndex={0} class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
+                            <td colspan="3" scope="colgroup" class="px-2 pt-2  border-accents2-dark border-solid border">{{ demande.animal.nom}}</td>
+                            <td colspan="3" scope="colgroup" class="px-2 pt-2  border-accents2-dark border-solid border">Demande</td>
+                          </tr>
+                          <tr class="text-fond text-sm bg-accents2-light font-grands font-semibold p-3 border-accents2-dark border-solid border" [class.hidden]="isHidden">
+                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Refuge</td>
+                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Date de demande</td>
+                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Statut</td>
+                          </tr>
+                          <tr class="text-sm font-body font-semibold bg bg-fond" [class.hidden]="isHidden">
+                              <td colspan="2">{{demande.animal.refuge.nom}}</td>
+                              <td colspan="2">{{demande.date_debut}}</td>
+                              <td colspan="2">{{demande.statut_demande}}</td>
+                          </tr>
+                        </tbody>
+                    }
+                  </table>
+              } @else {
+                <h4 class="w-full text-center font-grands text-2xl my-4">Pas de demandes d'accueil en attente</h4>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>

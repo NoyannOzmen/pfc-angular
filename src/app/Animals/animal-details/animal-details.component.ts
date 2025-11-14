@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CarouselComponent } from '../../Shared/carousel/carousel.component';
 import { ShelterService } from '../../Shelters/shelter.service';
 import { AuthService } from '../../auth.service';
+import { UserFosterService } from '../../Users/Foster/user-foster.service';
 
 @Component({
   selector: 'app-animal-details',
@@ -21,15 +22,16 @@ export class AnimalDetailsComponent {
   animal : AnimalInfos | undefined;
   animalTags : AnimalInfos[] | undefined;
   isFoster = this.authService.hasRole('foster')
+  fosterService : UserFosterService = inject(UserFosterService)
+  animalId = parseInt(this.route.snapshot.params['animalId'], 10)
 
   constructor() {
-    const animalId = parseInt(this.route.snapshot.params['animalId'], 10);
-    this.animalService.getAnimalById(animalId).then((animal) => {
+    this.animalService.getAnimalById(this.animalId).then((animal) => {
         this.animal = animal;
     });
   }
 
   makeRequest() {
-    console.warn("Sent foster request")
+    this.fosterService.makeRequest(this.animalId);
   }
 }
