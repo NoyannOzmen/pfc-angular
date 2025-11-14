@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CarouselComponent } from '../../Shared/carousel/carousel.component';
 import { RouterLink } from "@angular/router";
 

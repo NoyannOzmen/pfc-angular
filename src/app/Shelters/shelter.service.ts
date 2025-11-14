@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { AssociationInfos } from '../models/models';
+import { AnimalInfos, AssociationInfos } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,9 @@ export class ShelterService {
   async getShelterById(id : number) : Promise<AssociationInfos | undefined> {
     const shelter = await fetch(`${this.url}/${id}`).then(res => res.json());
     shelter.images_association[0].url = environment.apiUrl + shelter.images_association[0].url;
+    shelter.pensionnaires.forEach((animal : AnimalInfos) => {
+      animal.images_animal[0].url = environment.apiUrl + animal.images_animal[0].url
+    });
     return (await shelter) ?? {};
   }
-
 }
