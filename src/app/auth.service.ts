@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { UtilisateurInfos } from './models/models';
+import { MediaInfos, UtilisateurInfos } from './models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +28,12 @@ export class AuthService {
       }
       if (user.refuge) {
        sessionStorage.setItem("role", "shelter")
+/*        user.images_association.forEach((image : MediaInfos)  => {
+        image.url = environment.apiUrl + image.url;
+       }); */
+
       }
     }
-
     return (await user) ?? {};
   }
 

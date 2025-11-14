@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { RegisterService } from '../register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-foster-register',
@@ -8,6 +10,9 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './foster-register.component.css'
 })
 export class FosterRegisterComponent {
+  router : Router = inject(Router)
+  registerService : RegisterService = inject(RegisterService);
+
   fosterRegisterForm = new FormGroup({
       prenom: new FormControl('', Validators.minLength(2)),
       nom : new FormControl('', [Validators.minLength(3), Validators.required]),
@@ -24,7 +29,9 @@ export class FosterRegisterComponent {
   })
 
   onSubmit() {
-  //TODO: Use EventEmitter with form value
-  console.warn(this.fosterRegisterForm.value);
+    const registerInfos = this.fosterRegisterForm.value;
+    this.registerService.registerFoster(registerInfos);
+    this.fosterRegisterForm.reset();
+    this.router.navigateByUrl('/')
   }
 }

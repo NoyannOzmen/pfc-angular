@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { RegisterService } from '../register.service';
 
 @Component({
   selector: 'app-shelter-register',
@@ -8,6 +10,9 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './shelter-register.component.css'
 })
 export class ShelterRegisterComponent {
+  router : Router = inject(Router)
+  registerService : RegisterService = inject(RegisterService);
+
   shelterRegisterForm = new FormGroup({
       nom : new FormControl('', [Validators.minLength(3), Validators.required]),
       responsable : new FormControl('', [Validators.minLength(3), Validators.required]),
@@ -27,5 +32,10 @@ export class ShelterRegisterComponent {
   onSubmit() {
   //TODO: Use EventEmitter with form value
   console.warn(this.shelterRegisterForm.value);
+
+    const registerInfos = this.shelterRegisterForm.value;
+    this.registerService.registerShelter(registerInfos);
+    this.shelterRegisterForm.reset();
+    this.router.navigateByUrl('/')
   }
 }
