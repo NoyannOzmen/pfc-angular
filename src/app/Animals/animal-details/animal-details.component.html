@@ -47,16 +47,17 @@
       <div class="text-center w-full py-2">
         <p class="font-body text-texte">Son petit truc en plus :<br />{{ animal?.description }}</p>
       </div>
-<!--         { auth.user?.accueillant && (
+
+      @if(isFoster) {
         <div class="text-center w-full py-2">
-          {userMessage &&
+          <!-- {userMessage &&
             <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
-          }
-          <form onSubmit={handleSubmit}>
-          <button type="submit" class="mx-auto my-3 py-2 px-6 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">Faire une demande</button>
+          } -->
+          <form>
+          <button type="button" (click)="makeRequest()" class="mx-auto my-3 py-2 px-6 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">Faire une demande</button>
           </form>
         </div>
-        )} -->
+      }
     </article>
 
   </section>
@@ -86,7 +87,7 @@
       </div>
 
       <div class="text-center w-full py-2 my-4">
-        <a class="w-[60%] mx-auto my-3 py-2 px-4 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" [routerLink]="['/associations/', animal?.refuge?.id]">En savoir plus</a>
+        <a class="w-[60%] mx-auto my-3 py-2 px-4 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" [routerLink]="['/refuges/', animal?.refuge?.id]">En savoir plus</a>
       </div>
     </article>
   </section>
@@ -94,6 +95,6 @@
   <!-- Carousel -->
   <section class="p-4 py-6 block">
     <h2 class="font-grands text-3xl text-center my-2">Ils vous attendent de patte ferme !</h2>
-      <app-carousel></app-carousel>
+       <app-carousel></app-carousel>
   </section>
 </main>

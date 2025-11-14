@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { AuthService } from '../../auth.service';
 import { UtilisateurInfos } from '../../models/models';
 
@@ -11,9 +11,14 @@ import { UtilisateurInfos } from '../../models/models';
 })
 export class HeaderLoggedComponent {
   authService : AuthService = inject(AuthService)
-  logOut = this.authService.logOut
+  router : Router = inject(Router);
   user : UtilisateurInfos = this.authService.getUserData();
 
   isShelter = this.authService.hasRole('shelter')
   isFoster = this.authService.hasRole('foster')
+
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['/'])
+  }
 }

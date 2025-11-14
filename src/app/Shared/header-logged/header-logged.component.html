@@ -1,9 +1,9 @@
-<li class="border-2 border-accents2-dark max-[767px]:border-b-fond md:mr-4 md:border-r-fond px-4 max-[767px]:pb-2 place-self-center md:place-self-start pl-2">
+<li class="flex-nowrap border-2 border-accents2-dark max-[767px]:border-b-fond md:mr-4 md:border-r-fond px-4 max-[767px]:pb-2 place-self-center md:place-self-start pl-2">
   @if (isShelter) {
-    <a [routerLink]="['/associations/profil']">Bonjour : {{ user.refuge?.nom }}</a>
+    <a [routerLink]="['/association/profil']">Bonjour&nbsp;:&nbsp;{{ user.refuge?.nom }}</a>
   }
   @if (isFoster) {
-    <a [routerLink]="['/famille/profil']">Bonjour : @if(user.accueillant?.prenom) { {{ user.accueillant?.prenom }} } @else { {{ user.accueillant?.nom }} }</a>
+    <a [routerLink]="['/famille/profil']">Bonjour&nbsp;:&nbsp;@if(user.accueillant?.prenom) { {{ user.accueillant?.prenom }} } @else { {{ user.accueillant?.nom }} }</a>
   }
 </li>
 <li class="border-2 border-accents2-dark max-[767px]:border-b-fond  md:border-r-fond px-4 pr-6 max-[767px]:pb-2 place-self-center md:place-self-start">
@@ -11,10 +11,10 @@
     <a tabIndex={0} class="hover:text-accents1-light" [routerLink]="['/famille/profil']">Mon profil</a>
   }
   @if (isShelter) {
-    <a tabIndex={0} class="hover:text-accents1-light" [routerLink]="['/associations/profil']">Tableau de&nbsp;bord</a>
+    <a tabIndex={0} class="hover:text-accents1-light" [routerLink]="['/association/profil']">Tableau&nbsp;de&nbsp;bord</a>
   }
 </li>
 
 <li id="log-out" class="border-2 border-accents2-dark place-self-center md:place-self-start pl-2">
-  <p class="hover:text-accents1-light" (click)="logOut()">Se Déconnecter</p>
+  <p class="hover:text-accents1-light" (click)="logOut()">Se&nbsp;Déconnecter</p>
 </li>

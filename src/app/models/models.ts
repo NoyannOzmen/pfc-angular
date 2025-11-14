@@ -51,7 +51,8 @@ export interface AssociationInfos {
   site: string | null;
   description: string | null;
   images_association: MediaInfos[];
-  identifiant_association: UtilisateurInfos
+  identifiant_association: UtilisateurInfos;
+  pensionnaires : AnimalInfos[];
 }
 
 export interface AnimalInfos {
@@ -68,7 +69,7 @@ export interface AnimalInfos {
   images_animal: MediaInfos[];
   refuge: AssociationInfos;
   accueillant: FamilleInfos | null;
-  demandes: DemandeInfos[];
+  demandes: DemandeInfos[] | null;
   tags: TagInfos[]
 }
 
