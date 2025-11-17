@@ -6,9 +6,6 @@ import { MediaInfos, UtilisateurInfos } from './models/models';
   providedIn: 'root'
 })
 export class AuthService {
-//TODO Make it
-  constructor() { }
-
   url = environment.apiUrl;
 
   async logIn(credentials : any): Promise<UtilisateurInfos[]> {

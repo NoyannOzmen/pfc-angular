@@ -30,9 +30,6 @@ export class ShelterRegisterComponent {
   })
 
   onSubmit() {
-  //TODO: Use EventEmitter with form value
-  console.warn(this.shelterRegisterForm.value);
-
     const registerInfos = this.shelterRegisterForm.value;
     this.registerService.registerShelter(registerInfos);
     this.shelterRegisterForm.reset();

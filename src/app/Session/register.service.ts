@@ -7,9 +7,8 @@ import { AssociationInfos, FamilleInfos } from '../models/models';
 })
 export class RegisterService {
   url = environment.apiUrl;
-  //TODO Correct any typing
 
-  async registerFoster(registerInfos : any ) : Promise<FamilleInfos> {
+  async registerFoster(registerInfos : Object ) : Promise<FamilleInfos> {
     const newFoster = await fetch(`${this.url}/famille/inscription`, {
       method : "POST",
       headers: { "Content-type" : "application/json" },
@@ -18,7 +17,7 @@ export class RegisterService {
     return (await newFoster) ?? {};
   }
 
-  async registerShelter(registerInfos : any ) : Promise<AssociationInfos> {
+  async registerShelter(registerInfos : Object ) : Promise<AssociationInfos> {
     const newShelter = await fetch(`${this.url}/association/inscription`, {
       method : "POST",
       headers: { "Content-type" : "application/json" },

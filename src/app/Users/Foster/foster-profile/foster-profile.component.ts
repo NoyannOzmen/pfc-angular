@@ -19,7 +19,7 @@ export class FosterProfileComponent {
   router : Router = inject(Router)
 
   FosterProfileForm = new FormGroup({
-      prenom: new FormControl({value : this.user.accueillant?.prenom, disabled : true}, Validators.minLength(2)),
+      prenom: new FormControl({value : this.user.accueillant?.prenom, disabled : true}, Validators.minLength(3)),
       nom : new FormControl({value : this.user.accueillant?.nom, disabled : true}, [Validators.minLength(3), Validators.required]),
       email : new FormControl({value : this.user.email, disabled : true}, [Validators.email, Validators.required]),
       telephone : new FormControl({value : this.user.accueillant?.telephone, disabled : true}, [Validators.pattern(/^(0|\+33 )[1-9]([\-. ]?[0-9]{2} ){3}([\-. ]?[0-9]{2})|([0-9]{8})$/)]),

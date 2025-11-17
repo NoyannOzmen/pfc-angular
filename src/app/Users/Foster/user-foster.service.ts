@@ -31,8 +31,7 @@ export class UserFosterService {
     return data.message
   }
 
-  //TODO Typing
-  async updateFosterInfos(updateInfos : any) : Promise<FamilleInfos> {
+  async updateFosterInfos(updateInfos : Object) : Promise<FamilleInfos> {
     const token = sessionStorage.getItem("token");
     const updatedFoster = await fetch(`${this.url}/famille/profil`, {
       method : "POST",
