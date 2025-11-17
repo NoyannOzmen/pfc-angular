@@ -3,7 +3,9 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
 import { ResidentSubNavComponent } from "../Shared/resident-sub-nav/resident-sub-nav.component";
 import { AnimalService } from '../../../Animals/animal.service';
-import { AnimalInfos } from '../../../models/models';
+import { AnimalInfos, UtilisateurInfos } from '../../../models/models';
+import { UserShelterService } from '../user-shelter.service';
+import { AuthService } from '../../../auth.service';
 
 @Component({
   selector: 'app-shelter-resident-details',
@@ -13,8 +15,19 @@ import { AnimalInfos } from '../../../models/models';
 })
 export class ShelterResidentDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  animalService = inject(AnimalService);
+  authService : AuthService = inject(AuthService);
+  animalService : AnimalService = inject(AnimalService);
+  userShelterService: UserShelterService = inject(UserShelterService);
   animal : AnimalInfos | undefined;
+  user : UtilisateurInfos = this.authService.getUserData();
+  animalId = this.route.snapshot.params['animalId'];
+
+  upload(event : any) {
+    const file : File = event.target.files[0];
+    if (file) {
+      this.userShelterService.updateAnimalPicture(file, this.animalId);
+    }
+  }
 
   constructor() {
     const animalId = parseInt(this.route.snapshot.params['animalId'], 10);

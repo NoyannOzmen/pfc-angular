@@ -15,14 +15,13 @@
           }
           -->
 
-          <form class="self-center rounded-lg border" (submit)="sendFile()">
-            <div class="flex flex-col m-2">
+          <form class="self-center">
+            <div class="m-2 hidden">
               <label for="file" class="text-center">Importer une image</label>
-              <input class="bg-fond w-4/5 rounded-lg mx-auto mt-2" onChange={} id="file" type="file" name="file" required/>
-              <!-- (e) => setFile(e.target.files?.[0] || null) -->
+              <input class="bg-fond w-4/5 rounded-lg mx-auto mt-2" (change)="upload($event)" #fileUpload type="file" name="file" required/>
             </div>
             <div class="flex justify-center">
-              <input type="submit" value="Importer" class="my-3 py-2 px-4 mx-auto bg-accents2-dark text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"/>
+              <input type="button" value="Importer une image" class="my-3 py-2 px-4 mx-auto bg-accents2-dark text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" (click)="fileUpload.click()"/>
             </div>
           </form>
         </section>

@@ -60,7 +60,7 @@
           @for(animal of filtered; track $index) {
             <a data-nom={animal.nom} data-espece={animal.espece.id} data-statut={animal.statut} class="animal_card animal_card--visible flex flex-col justify-between content-center relative bg-fond rounded-xl w-36 h-36 shrink-0 md:size-60"
             [routerLink]="['/association/profil/animaux', animal.id]">
-              @if( animal.images_animal ) {
+              @if( animal.images_animal.length > 0 ) {
                 @for(image of animal.images_animal; track $index) {
                   <img class="rounded-t-xl"
                   [src]="image.url" alt="Photo de {{ animal.nom }}"/>

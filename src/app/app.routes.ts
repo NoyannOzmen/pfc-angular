@@ -51,27 +51,11 @@ export const routes: Routes = [
   { path: 'inscription', component: RegisterComponent, title: 'Créer un compte' },
   /* foster routes */
   { path: 'famille/inscription', component: FosterRegisterComponent, title: 'Créer un compte famille d\'accueil' },
-  { path: 'famille/profil', component: FosterProfileComponent, title: 'Votre profil', canActivate: [authGuard, fosterGuard],
-    /* canActivateChild: [authGuard, fosterGuard],
-    children : [
-      { path: 'demandes', component: FosterRequestComponent, title: 'Vos demandes en cours' }
-    ] */
-  },
+  { path: 'famille/profil', component: FosterProfileComponent, title: 'Votre profil', canActivate: [authGuard, fosterGuard]},
   { path: 'famille/profil/demandes', component: FosterRequestComponent, title: 'Vos demandes en cours', canActivate: [authGuard, fosterGuard]},
   /* logged shelter routes */
   { path: 'association/inscription', component: ShelterRegisterComponent, title: 'Créer un compte association' },
-  { path: 'association/profil', component: ShelterDashboardComponent, title: 'Votre tableau de bord', canActivate: [authGuard, shelterGuard],
-    /* canActivateChild: [authGuard, shelterGuard],
-    children : [
-      { path: 'animaux/:animalId', component: ShelterResidentDetailsComponent, title: 'Informations sur l\'animal' },
-      { path: 'animaux/nouveau-profil', component: ShelterResidentAddProfileComponent, title: 'Créer un profil pour un animal' },
-      { path: 'animaux/suivi', component: ShelterFosteredListComponent, title: 'Vos animaux hébergés' },
-      { path: 'animaux', component: ShelterResidentListComponent, title: 'Vos animaux' },
-      { path: 'demandes/:demandeId', component: ShelterRequestDetailsComponent, title: 'Informations sur la demande d\'accueil' },
-      { path: 'demandes', component: ShelterRequestListComponent, title: 'Vos demandes d\'accueil' },
-      { path: 'logo', component: ShelterUploadComponent, title: 'Modifier votre logo' },
-    ] */
-  },
+  { path: 'association/profil', component: ShelterDashboardComponent, title: 'Votre tableau de bord', canActivate: [authGuard, shelterGuard]},
   { path: 'association/profil/animaux/nouveau-profil', component: ShelterResidentAddProfileComponent, title: 'Créer un profil pour un animal', canActivate: [authGuard, shelterGuard]},
   { path: 'association/profil/animaux/suivi', component: ShelterFosteredListComponent, title: 'Vos animaux hébergés', canActivate: [authGuard, shelterGuard]},
   { path: 'association/profil/animaux/:animalId', component: ShelterResidentDetailsComponent, title: 'Informations sur l\'animal', canActivate: [authGuard, shelterGuard]},

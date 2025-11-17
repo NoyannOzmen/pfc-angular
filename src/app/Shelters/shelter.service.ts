@@ -22,7 +22,9 @@ export class ShelterService {
       shelter.images_association[0].url = environment.apiUrl + shelter.images_association[0].url;
     }
     shelter.pensionnaires.forEach((animal : AnimalInfos) => {
-      animal.images_animal[0].url = environment.apiUrl + animal.images_animal[0].url
+      if(animal.images_animal.length > 0) {
+        animal.images_animal[0].url = environment.apiUrl + animal.images_animal[0].url
+      }
     });
     return (await shelter) ?? {};
   }

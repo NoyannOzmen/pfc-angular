@@ -73,16 +73,37 @@ export class UserShelterService {
     return (await updatedShelter) ?? {}
   }
 
-  async updateLogo() : Promise<MediaInfos> {
+  async updateLogo(file: File, id : string) : Promise<MediaInfos> {
     const token = sessionStorage.getItem("token");
-    const logo = await fetch(`${this.url}/profil/upload/logo`, {
+    const formData = new FormData;
+    formData.append("assoId", id)
+    formData.append("file", file, file.name)
+    console.log(formData)
+    const logo = await fetch(environment.apiUrl + "/upload/logo", {
       method : "POST",
       headers : {
-        "Content-type" : "application/json",
         "Authorization" : `Bearer ${token}`
-      }
+      },
+      body: formData
     }).then(res => res.json());
+    logo.url = environment.apiUrl + logo.url;
     return (await logo) ?? {}
+  }
+
+    async updateAnimalPicture(file: File, id : string) : Promise<MediaInfos> {
+    const token = sessionStorage.getItem("token");
+    const formData = new FormData;
+    formData.append("animalId", id)
+    formData.append("file", file, file.name)
+    const photo = await fetch(environment.apiUrl + "/upload/photo", {
+      method : "POST",
+      headers : {
+        "Authorization" : `Bearer ${token}`
+      },
+      body: formData
+    }).then(res => res.json());
+    photo.url = environment.apiUrl + photo.url;
+    return (await photo) ?? {}
   }
 
   async denyRequest(id: number) : Promise<void> {

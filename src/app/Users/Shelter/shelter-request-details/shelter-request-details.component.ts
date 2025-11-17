@@ -26,12 +26,10 @@ export class ShelterRequestDetailsComponent {
   denyRequest() {
     this.shelterService.denyRequest(this.requestId);
     this.demande!.statut_demande = 'Refusée';
-    /* this.router.navigateByUrl("/association/profil/demandes") */
   }
 
   acceptRequest() {
     this.shelterService.acceptRequest(this.requestId);
     this.demande!.statut_demande = 'Validée';
-    /* this.router.navigateByUrl("/association/profil/demandes") */
   }
 }
