@@ -1,1 +1,135 @@
-<p>shelter-request-details works!</p>
+<main class="justify-self-stretch flex-1">
+  <h2 class="font-grands text-3xl text-center my-2 pt-5">Mon espace association</h2>
+  <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+    <app-dashboard-nav></app-dashboard-nav>
+
+    <div class="flex flex-col bg-zoning rounded-lg">
+
+      <nav class="rounded-lg h-9">
+        <ul class="rounded-t-lg flex h-9 content-center bg-accents2 justify-stretch font-semibold text-fond text-sm md:justify-start pl-2 pt-2">
+          <li><a class="dashsubbtn-active flex flex-col justify-center content-center" [routerLink]="['/association/profil/demandes']">
+            <span class="material-symbols-outlined shrink">
+              arrow_back
+            </span>
+          </a></li>
+        </ul>
+      </nav>
+
+      <section class="flex flex-wrap justify-center" id="dashboard-container">
+        <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Suivi de demande pour {{ demande?.animal?.nom }}</h3>
+
+        <!--
+        {userMessage &&
+          <div>
+            <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+          </div>
+        }
+        -->
+        <div class="flex flex-wrap p-2 justify-center md:flex-nowrap" >
+          <!-- ANIMAL -->
+          <div class="w-full md:w-1/2">
+
+            <h4 class="font-body font-bold text-center">Animal</h4>
+
+            <div class="flex p-6 pb-4">
+              <div class="flex flex-col gap-2">
+              @if ( demande?.animal?.images_animal ) {
+                @for(image of demande?.animal?.images_animal; track $index) {
+                <img class="w-28 rounded-lg" [src]="image.url" alt="Photo de {{ demande?.animal?.nom }}" />
+                }
+              } @else {
+                <img class="w-28 rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
+              }
+                <a class="rounded-full mx-auto block bg-accents1 text-fond w-16 text-center text-xs font-semibold py-1 hover:underline" [routerLink]="['/association/profil/animaux/', demande?.animal?.id]">Détails</a>
+              </div>
+
+              <div class="pl-4">
+                <p class="text-base italic leading-3">Nom</p>
+                <p class="text-base font-semibold">{{ demande?.animal?.nom }}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 px-6 gap-y-2">
+
+              <div>
+                <p class="text-sm italic leading-3">Age</p>
+                <p class="text-base font-semibold">{{ demande?.animal?.age }} ans</p>
+              </div>
+
+              <div>
+                <p class="text-sm italic leading-3">Sexe</p>
+                <p class="text-base font-semibold">{{ demande?.animal?.sexe }}</p>
+              </div>
+
+              <div class="">
+                <p class="text-sm italic leading-3">Espèce</p>
+                <p class="text-base font-semibold">{{ demande?.animal?.espece?.nom }}</p>
+              </div>
+
+              @if (demande?.animal?.race) {
+                <div>
+                  <p class="text-sm italic leading-3">Race</p>
+                  <p class="text-base font-semibold">{{ demande?.animal?.race }}</p>
+                </div>
+              }
+            </div>
+
+            <div class="flex flex-wrap mt-4 px-6 gap-1">
+              @for(tag of demande?.animal?.tags; track $index) {
+                <p class="group rounded-full block bg-accents1 text-fond text-center text-xs font-semibold py-1 px-2">
+                  {{ tag.nom }}
+                  <span class="group-hover:block hidden z-10 bg-accents2-dark text-fond absolute px-2 py-2 text-xs rounded-b-xl rounded-tr-xl">
+                    {{ tag.description }}
+                  </span>
+                </p>
+              }
+            </div>
+          </div>
+
+          <hr class="border-t-accents2 w-2/4 border-t-2 border-solid justify-self-center my-4 md:hidden" />
+
+          <!-- FOSTER -->
+          <div class="w-full md:w-1/2">
+            <h4 class="font-body font-bold mb-4 text-center">Famille</h4>
+
+            <div class="px-6 mb-3 md:grid md:grid-cols-2 md:gap-2">
+              <div class="mb-2 mt-2">
+                <p class="text-sm italic leading-3">Nom</p>
+                <p class="text-base font-semibold">{{ demande?.famille?.nom }}</p>
+              </div>
+              <div class="mb-2">
+                <p class="text-sm italic leading-3">Téléphone</p>
+                <p class="text-base font-semibold">{{ demande?.famille?.telephone }}</p>
+              </div>
+              <div class="mb-2">
+                <p class="text-sm italic leading-4">Adresse</p>
+                <p class="text-base font-semibold leading-4">{{ demande?.famille?.rue }}</p>
+                <p class="text-base font-semibold ">{{ demande?.famille?.code_postal }} {{ demande?.famille?.commune }}</p>
+              </div>
+              <div class="mb-2">
+                <p class="text-sm italic leading-3">Pays</p>
+                <p class="text-base font-semibold">{{ demande?.famille?.pays }}</p>
+              </div>
+              <div>
+                <p class="text-sm italic leading-3">Hébergement</p>
+                <p class="text-base font-semibold">{{ demande?.famille?.hebergement }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GESTION -->
+        <div class="w-full flex flex-row flex-wrap md:flex-nowrap justify-center gap-2 items-center">
+          <h4 class="font-body font-bold text-center">Statut de la demande :</h4>
+          <p id="request-status" class="font-body text-center"><!-- {displayedRequest ? (displayedRequest.statut_demande) : ("En Attente")} -->{{demande?.statut_demande}}</p>
+          <form class="w-[80%] md:w-[20%]" onSubmit={acceptRequest}>
+            <button type="button" (click)="acceptRequest()" class="bg-accents1 w-full m-3 py-2 px-4 text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">Accepter</button>
+          </form>
+          <form class="w-[80%] md:w-[20%]" onSubmit={denyRequest}>
+            <button type="button" (click)="denyRequest()" class="bg-accents2-dark w-full m-3 py-2 px-4 text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">Refuser</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>

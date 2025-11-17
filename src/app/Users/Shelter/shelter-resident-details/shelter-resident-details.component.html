@@ -1,1 +1,149 @@
-<p>shelter-resident-details works!</p>
+<main class="justify-self-stretch flex-1">
+  <h2 class="font-grands text-3xl text-center my-2 pt-5">Mon espace association</h2>
+  <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+    <app-dashboard-nav></app-dashboard-nav>
+    <div class="flex flex-col bg-zoning rounded-lg">
+      <app-resident-sub-nav></app-resident-sub-nav>
+      <section id="dahboard-container" class="flex justify-center flex-wrap gap-x-6 gap-y-4 p-6">
+        <h3 class="hidden md:inline font-grands text-3xl text-center my-2 pt-5 w-full">Fiche de suivi de {{ animal?.nom }}</h3>
+        <!--
+        {userMessage &&
+          <div>
+            <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+          </div>
+        }
+        -->
+        <div class="bg-fond flex mx-auto">
+        <!-- ANIMAL INFO -->
+        <div class="w-60 md:w-auto">
+          <div class="flex p-6 pb-4">
+            <div class="flex flex-col gap-2">
+              @if ( animal?.images_animal ) {
+                @for(image of animal?.images_animal; track $index) {
+                <img class="w-28 rounded-lg"
+                [src]="image.url" alt="Photo de {{ animal?.nom }}"/>
+                }
+              } @else {
+                <img class="w-28 rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
+              }
+            </div>
+
+            <div class="pl-4">
+              <p class="text-base italic leading-3">Nom</p>
+              <p class="text-base font-semibold">{{ animal?.nom }}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 px-6 gap-y-2">
+            <div>
+              <p class="text-sm italic leading-3">Age</p>
+              <p class="text-base font-semibold">{{ animal?.age }}&nbsp;ans</p>
+            </div>
+
+            <div>
+              <p class="text-sm italic leading-3">Sexe</p>
+              <p class="text-base font-semibold">{{ animal?.sexe }}</p>
+            </div>
+
+            <div class="">
+              <p class="text-sm italic leading-3">Espèce</p>
+              <p class="text-base font-semibold">{{ animal?.espece?.nom }}</p>
+            </div>
+
+            @if (animal?.race) {
+              <div>
+                <p class="text-sm italic leading-3">Race</p>
+                <p class="text-base font-semibold">{{ animal?.race }}</p>
+              </div>
+            }
+          </div>
+
+          <div class="flex flex-wrap mt-4 px-6 gap-1">
+            @for(tag of animal?.tags; track $index) {
+              <p class="group rounded-full block bg-accents1 text-fond text-center text-xs font-semibold py-1 px-2">
+                {{ tag.nom }}
+                <span class="group-hover:block hidden z-10 bg-accents2-dark text-fond absolute px-2 py-2 text-xs rounded-b-xl rounded-tr-xl">
+                  {{ tag.description }}
+                </span>
+              </p>
+            }
+          </div>
+
+          <div class="font-body mx-auto w-[60%] bg-zoning rounded-lg shadow my-4">
+            <form onSubmit={sendFile}>
+              <div class="flex flex-col m-2">
+                  <label for="file" class="text-center">Importer une image</label>
+                  <input onChange={} id="file" type="file" name="file" class="bg-fond w-4/5 rounded-lg mx-auto mt-2" required/>
+                  <!-- (e) => setFile(e.target.files?.[0] || null) -->
+              </div>
+              <div class="flex justify-center">
+                <input type="submit" value="Importer" class="mx-auto hover:bg-accents1-dark rounded-full hover:underline bg-accents1 text-center font-grands text-fond font-semibold text-xs py-0.5 px-4"/>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+        <!-- CURRENT FOSTER INFOS -->
+          @if (animal?.accueillant) {
+            <div class="w-60 md:w-auto my-5 border-l border-l-accents2-dark pl-6">
+              <h3 class="font-body font-bold mb-4 text-center">Famille d'accueil</h3>
+
+              <div class="px-6 mb-3 md:grid-cols-2 gap-3 md:grid md:max-w-96">
+                <div class="mb-2 mt-2">
+                  <p class="text-sm italic leading-3">Nom</p>
+                  <p class="text-sm font-semibold">{{ animal?.accueillant?.nom }}</p>
+                </div>
+                <div class="mb-2">
+                  <p class="text-sm italic leading-3">Téléphone</p>
+                  <p class="text-sm font-semibold">{{ animal?.accueillant?.telephone }}</p>
+                </div>
+                <div class="mb-2">
+                  <p class="text-sm italic leading-4">Adresse</p>
+                  <p class="text-sm font-semibold leading-3">{{ animal?.accueillant?.rue }}</p>
+                  <p class="text-sm font-semibold ">{{ animal?.accueillant?.code_postal }} {{ animal?.accueillant?.commune }}</p>
+                </div>
+                <div class="mb-2">
+                  <p class="text-sm italic leading-3">Pays</p>
+                  <p class="text-sm font-semibold">{{ animal?.accueillant?.pays }}</p>
+                </div>
+                <div>
+                  <p class="text-sm italic leading-3">Hébergement</p>
+                  <p class="text-sm font-semibold">{{ animal?.accueillant?.hebergement }}</p>
+                </div>
+              </div>
+            </div>
+          }
+
+        <!-- REQUEST HISTORY -->
+          @if (animal?.demandes) {
+            <div class="px-4">
+              <h3 class="font-body font-bold mb-4">Historique des demandes d'accueil</h3>
+
+              <table class="mb-3 rounded-b-lg rounded-lg border-separate ">
+                <thead class=" text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border">
+                  <tr>
+                    <th class="px-2 pt-2  border-accents2-light border-solid border text-center">Famille</th>
+                    <th class="px-2 pt-2  border-accents2-light border-solid border text-center">Date de demande</th>
+                    <th class="px-2 pt-2  border-accents2-light border-solid border text-center">Statut</th>
+                  </tr>
+                </thead>
+                <tbody class="rounded-lg border-separate ">
+                  @for(demande of animal?.demandes; track $index) {
+                    <tr class="odd:bg-accents2-light even:bg-fond odd:text-fond text-sm font-body font-semibold p-4 rounded-lg ">
+                      <td class="text-center p-2 rounded-lg ">{{demande.famille.nom}}</td>
+                      <td class="text-center p-2 rounded-lg ">{{demande.date_debut}}</td>
+                      <td class="text-center p-2 rounded-lg hover:underline"><a [routerLink]="['/association/profil/demandes', demande.id]" >{{demande.statut_demande}}</a></td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+
+
+      </section>
+    </div>
+  </div>
+</main>

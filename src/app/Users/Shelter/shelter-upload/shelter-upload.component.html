@@ -1,1 +1,39 @@
-<p>shelter-upload works!</p>
+<main class="justify-self-stretch flex-1">
+  <h2 class="font-grands text-3xl text-center my-2 pt-5">Bienvenue sur votre espace personnel</h2>
+    <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+      <app-dashboard-nav></app-dashboard-nav>
+      <div class="font-body bg-zoning rounded-lg shadow mb-4">
+        <app-dashboard-sub-nav></app-dashboard-sub-nav>
+        <section class="flex flex-col flex-wrap justify-center" id="dashboard-container">
+          <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Ajouter une image</h3>
+
+          <!--
+          {userMessage &&
+            <div>
+              <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+            </div>
+          }
+          -->
+
+          <form class="self-center rounded-lg border" (submit)="sendFile()">
+            <div class="flex flex-col m-2">
+              <label for="file" class="text-center">Importer une image</label>
+              <input class="bg-fond w-4/5 rounded-lg mx-auto mt-2" onChange={} id="file" type="file" name="file" required/>
+              <!-- (e) => setFile(e.target.files?.[0] || null) -->
+            </div>
+            <div class="flex justify-center">
+              <input type="submit" value="Importer" class="my-3 py-2 px-4 mx-auto bg-accents2-dark text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"/>
+            </div>
+          </form>
+        </section>
+
+        @if(currentLogo) {
+          <div class="flex flex-col justify-center">
+            <h3 class="font-body text-2xl text-center">Votre Logo actuel</h3>
+                <img class="object-fit mx-auto rounded-lg" [src]="currentLogo" alt="" />
+          </div>
+        }
+
+      </div>
+    </div>
+</main>

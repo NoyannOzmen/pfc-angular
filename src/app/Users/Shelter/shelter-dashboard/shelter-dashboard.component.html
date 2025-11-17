@@ -1,1 +1,109 @@
-<p>shelter-dashboard works!</p>
+    <main class="justify-self-stretch flex-1">
+      <h2 class="font-grands text-3xl text-center my-2 pt-5">Bienvenue sur votre espace personnel</h2>
+      <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+        <app-dashboard-nav></app-dashboard-nav>
+        <div class="font-body bg-zoning rounded-lg shadow mb-4">
+          <app-dashboard-sub-nav></app-dashboard-sub-nav>
+          <section class="flex flex-wrap justify-center" id="dashboard-container">
+            <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Mon profil</h3>
+
+            <!--
+            {userMessage &&
+              <div>
+                <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+              </div>
+            }
+            -->
+
+            <form class="flex flex-col content-center md:w-[60%] justify-center text-texte" [formGroup]="ShelterProfileForm">
+
+              <fieldset class="shrink font-body rounded-lg shadow my-2 py-5">
+                <legend class="text-center">Mon organisme&nbsp;<span tabIndex={0} class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="nom">Nom</label>
+                  <input class="block w-full bg-fond" type="text" id="nom" name="nom" formControlName="nom" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="responsable">Président</label>
+                  <input class="block w-full bg-fond" type="text" id="responsable" name="responsable" formControlName="responsable" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="rue">Rue</label>
+                  <input class="block w-full bg-fond" type="text" id="rue" name="rue" formControlName="rue" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="commune">Commune</label>
+                  <input class="block w-full bg-fond" type="text" id="commune" name="commune" formControlName="commune" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="code_postal">Code Postal</label>
+                  <input class="block w-full bg-fond" type="text" id="code_postal" name="code_postal" pattern="^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$" formControlName="code_postal" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="pays">Pays</label>
+                  <input class="block w-full bg-fond" type="text" id="pays" name="pays" formControlName="pays" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="telephone">N° Téléphone</label>
+                  <input class="block w-full bg-fond" type="tel" id="telephone" name="telephone" pattern="^(0|\+33 )[1-9]([\-. ]?[0-9]{2} ){3}([\-. ]?[0-9]{2})|([0-9]{8})$" formControlName="telephone" />
+                </div>
+
+                <div class="mx-auto p-2">
+                  <label class="text-center" for="siret">N° SIRET</label>
+                  <input class="block w-full bg-fond" type="text" id="siret" name="siret" pattern="^(\d{14}|((\d{3}[ ]\d{3}[ ]\d{3})|\d{9})[ ]\d{5})$" formControlName="siret" />
+                </div>
+
+                <div class="mx-auto p-2 flex flex-wrap">
+                  <label class="w-full" for="site">Site Web</label>
+                  <input class="block w-full bg-fond" type="url" name="site" id="site" pattern="https://.*" formControlName="site" />
+                </div>
+
+                <div class="flex flex-wrap mx-auto p-2">
+                  <label class="place-items-start pr-1 w-full" for="description">Description</label>
+                  <textarea rows="5" class="w-full bg-fond" name="description" id="description" formControlName="description"></textarea>
+                </div>
+
+              </fieldset>
+
+              <button #validate class="hidden md:w-[60%] mx-auto my-3 py-2 px-4 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" type="button" (click)="updateShelterInfos()">Valider les modifications</button>
+
+            </form>
+          </section>
+          <section class="flex flex-wrap justify-center">
+            <div class="flex flex-col flex-wrap content-center justify-around text-texte">
+              <button (click)="displayModal()" class="w-full md:w-[60%] mx-auto my-3 py-2 px-4 bg-accents2-dark text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" type="button">Supprimer mon profil</button>
+              <p class="text-center">ATTENTION ! Cette suppression est définitive !</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Delete Account Modal -->
+      <div id="delete-account-modal" class="flex justify-center content-center fixed bg-texte/20 inset-0" [class.hidden]="isHidden">
+        <div class="self-center bg-zoning p-6 rounded-lg">
+          <div class="flex justify-between">
+            <h3 class="font-grands text-lg font-extrabold mb-4">Supprimer votre compte</h3>
+            <span (click)="displayModal()" class="cancel material-symbols-outlined text-texte cursor-pointer">
+              close
+            </span>
+          </div>
+          <form id="delete-container" class="">
+
+            <div class="mb-2">
+              <p class="block text-texte font-grands font-bold text-base">ATTENTION ! <br/> Êtes-vous sûrs et certains de vouloir supprimer votre compte ? <br /> Cette suppression est définitive !</p>
+            </div>
+            <div>
+              <input class="cursor-pointer hover:bg-accents1-dark rounded-full hover:underline bg-accents1 text-center font-grands text-fond font-semibold text-base py-1 px-4" type="button" (click)="handleDeleteAccount()" value="Valider" />
+              <button (click)="displayModal()" class="hover:bg-accents2-dark rounded-full hover:underline bg-accents2-dark text-center font-grands text-fond font-semibold text-base py-1 px-4 cancel">Annuler</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>

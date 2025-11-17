@@ -1,1 +1,58 @@
-<p>shelter-request-list works!</p>
+<main class="justify-self-stretch flex-1">
+  <h2 class="font-grands text-3xl text-center my-2 pt-5">Mon espace association</h2>
+  <div class="flex flex-col content-center justify-center mx-auto mb-4 w-[80%]">
+    <app-dashboard-nav></app-dashboard-nav>
+
+    <div class="flex flex-col bg-zoning rounded-lg">
+      <nav class="rounded-lg h-9">
+        <ul class="rounded-t-lg flex h-9 content-center bg-accents2 justify-stretch font-semibold text-fond text-sm md:justify-start pl-2 pt-2">
+          <li><a class="dashsubbtn-active flex flex-col justify-center content-center" [routerLink]="['/association/profil/demandes']"></a></li>
+        </ul>
+      </nav>
+
+      <section class="flex flex-wrap justify-center" id="dashboard-container">
+        <h3 class="hidden md:inline font-grands text-3xl text-center my-2 pt-5 w-full">Gestion des demandes d'accueil</h3>
+
+        <div class="container">
+          <div class="row w-full text-center my-6">
+            <div class="col w-full text-center my-6 flex justify-center flex-wrap">
+              @if (requested?.length) {
+                <h4 class="w-full text-center font-grands text-2xl my-4">Demandes en cours</h4>
+                <table class="table text-center w-full md:w-5/6">
+                  <thead class="border-none bg-zoning text-sm font-grands">
+                    <tr>
+                      <th colSpan="4" scope="colgroup">Nom Animal</th>
+                      <th colSpan="2" scope="colgroup">Nombre de demandes</th>
+                    </tr>
+                  </thead>
+                  @for(animal of requested; track $index) {
+                     <tbody>
+                      <tr (click)="[toggle(), findCurrentRequest(`${animal.id}`)]" tabIndex={0} class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
+                        <td colSpan="4" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal.nom}}</td>
+                        <td colSpan="2" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal.demandes.length}}</td>
+                      </tr>
+                        <tr class="fold text-fond text-sm bg-accents2-light font-grands font-semibold p-3 border-accents2-dark border-solid border" [class.hidden]="isHidden">
+                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Famille</td>
+                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Date de demande</td>
+                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Statut</td>
+                        </tr>
+                        @for(demande of requestList; track $index) {
+                          <tr class="fold text-sm font-body font-semibold" [class.hidden]="isHidden" ng-repeat="demande in animal.demandes" ng-class-even='bg-fond' ng-class-odd='text-fond bg-accents2-light'>
+                              <td colSpan="2">{{demande.famille.nom}}</td>
+                              <td colSpan="2">{{demande.date_debut}}</td>
+                              <td colSpan="2"><a tabIndex={0} class="hover:underline" [routerLink]="['/association/profil/demandes/', demande.id ]">{{demande.statut_demande}}</a></td>
+                          </tr>
+                        }
+                </tbody>
+                  }
+                </table>
+              } @else {
+                <h4 class="w-full text-center font-grands text-2xl my-4">Pas de demandes d'accueil en attente</h4>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
