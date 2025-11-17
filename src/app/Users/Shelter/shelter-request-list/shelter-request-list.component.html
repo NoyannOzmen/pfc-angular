@@ -25,26 +25,11 @@
                       <th colSpan="2" scope="colgroup">Nombre de demandes</th>
                     </tr>
                   </thead>
-                  @for(animal of requested; track $index) {
-                     <tbody>
-                      <tr (click)="[toggle(), findCurrentRequest(`${animal.id}`)]" tabIndex={0} class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
-                        <td colSpan="4" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal.nom}}</td>
-                        <td colSpan="2" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal.demandes.length}}</td>
-                      </tr>
-                        <tr class="fold text-fond text-sm bg-accents2-light font-grands font-semibold p-3 border-accents2-dark border-solid border" [class.hidden]="isHidden">
-                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Famille</td>
-                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Date de demande</td>
-                          <td colSpan="2" class="px-2 pt-2  border-accents2-light border-solid border">Statut</td>
-                        </tr>
-                        @for(demande of requestList; track $index) {
-                          <tr class="fold text-sm font-body font-semibold" [class.hidden]="isHidden" ng-repeat="demande in animal.demandes" ng-class-even='bg-fond' ng-class-odd='text-fond bg-accents2-light'>
-                              <td colSpan="2">{{demande.famille.nom}}</td>
-                              <td colSpan="2">{{demande.date_debut}}</td>
-                              <td colSpan="2"><a tabIndex={0} class="hover:underline" [routerLink]="['/association/profil/demandes/', demande.id ]">{{demande.statut_demande}}</a></td>
-                          </tr>
-                        }
-                </tbody>
-                  }
+                  <tbody>
+                    @for(animal of requested; track $index) {
+                      <app-shelter-request-table [animal]="animal" class="table-line"></app-shelter-request-table>
+                    }
+                  </tbody>
                 </table>
               } @else {
                 <h4 class="w-full text-center font-grands text-2xl my-4">Pas de demandes d'accueil en attente</h4>
