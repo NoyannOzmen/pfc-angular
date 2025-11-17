@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { AnimalInfos, DemandeInfos, FamilleInfos } from '../../models/models';
+import { DemandeInfos, FamilleInfos } from '../../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class UserFosterService {
 
   async getCurrentRequests(id : number) : Promise<DemandeInfos[]> {
     const token = sessionStorage.getItem("token")
-    const currentRequests = await fetch(`${this.url}/demandes` /* /famille/profil/demandes/${id} */, {
+    const currentRequests = await fetch(`${this.url}/demandes`, {
       headers: {
         "Content-type" : "application/json",
         "Authorization": `Bearer ${token}`

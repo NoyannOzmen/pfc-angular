@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AnimalService } from '../../Animals/animal.service';
 import { ShelterService } from '../../Shelters/shelter.service';

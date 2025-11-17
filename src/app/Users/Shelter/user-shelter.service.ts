@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AnimalInfos, AssociationInfos, DemandeInfos, MediaInfos, TagInfos } from '../../models/models';
+import { AnimalInfos, AssociationInfos, DemandeInfos, MediaInfos } from '../../models/models';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

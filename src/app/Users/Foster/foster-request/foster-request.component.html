@@ -29,24 +29,11 @@
                         <th colspan="3" scope="colgroup">Demande</th>
                       </tr>
                     </thead>
-                    @for(demande of currentRequests; track $index) {
-                        <tbody>
-                          <tr (click)="toggle()" tabIndex={0} class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
-                            <td colspan="3" scope="colgroup" class="px-2 pt-2  border-accents2-dark border-solid border">{{ demande.animal.nom}}</td>
-                            <td colspan="3" scope="colgroup" class="px-2 pt-2  border-accents2-dark border-solid border">Demande</td>
-                          </tr>
-                          <tr class="text-fond text-sm bg-accents2-light font-grands font-semibold p-3 border-accents2-dark border-solid border" [class.hidden]="isHidden">
-                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Refuge</td>
-                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Date de demande</td>
-                            <td colspan="2" class="px-2 pt-2  border-accents2-light border-solid border">Statut</td>
-                          </tr>
-                          <tr class="text-sm font-body font-semibold bg bg-fond" [class.hidden]="isHidden">
-                              <td colspan="2">{{demande.animal.refuge.nom}}</td>
-                              <td colspan="2">{{demande.date_debut}}</td>
-                              <td colspan="2">{{demande.statut_demande}}</td>
-                          </tr>
-                        </tbody>
-                    }
+                    <tbody>
+                      @for(demande of currentRequests; track $index) {
+                        <app-foster-request-table [demande]="demande" class="table-line"></app-foster-request-table>
+                      }
+                    </tbody>
                   </table>
               } @else {
                 <h4 class="w-full text-center font-grands text-2xl my-4">Pas de demandes d'accueil en attente</h4>

@@ -14,7 +14,7 @@ export class ShelterRequestTableComponent {
   requestList : DemandeInfos[] = [];
   animal = input.required<AnimalInfos>();
 
-  isHidden = true;
+  isHidden : boolean = true;
   toggle() {
     this.isHidden = !this.isHidden
   };

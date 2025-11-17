@@ -19,7 +19,7 @@ export class ShelterListComponent {
   speciesList: EspeceInfos[] = [];
   searchService: SearchService = inject(SearchService);
 
-  isHidden = true;
+  isHidden : boolean = true;
 
   toggleFilters() {
     this.isHidden = !this.isHidden

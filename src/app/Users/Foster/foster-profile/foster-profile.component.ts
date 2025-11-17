@@ -39,7 +39,7 @@ export class FosterProfileComponent {
     //TODO Update Form Infos as well
   }
 
-  isHidden = true;
+  isHidden : boolean = true;
   displayModal() {
     this.isHidden = !this.isHidden
   };

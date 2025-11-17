@@ -40,7 +40,7 @@ export class ShelterDashboardComponent {
     this.shelterService.updateShelterInfos(updateInfos);
   }
 
-  isHidden = true;
+  isHidden : boolean = true;
   displayModal() {
     this.isHidden = !this.isHidden
   };

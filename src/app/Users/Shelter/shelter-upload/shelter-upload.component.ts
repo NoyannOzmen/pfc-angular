@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
 import { DashboardSubNavComponent } from "../Shared/dashboard-sub-nav/dashboard-sub-nav.component";
 import { AuthService } from '../../../auth.service';
-import { MediaInfos, UtilisateurInfos } from '../../../models/models';
+import { UtilisateurInfos } from '../../../models/models';
 import { ShelterService } from '../../../Shelters/shelter.service';
 
 @Component({
