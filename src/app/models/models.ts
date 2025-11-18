@@ -57,7 +57,7 @@ export interface AssociationInfos {
 
 export interface AnimalInfos {
   id: string;
-  associationInfos_id: string;
+  association_id: string;
   nom: string;
   race: string;
   couleur: string;

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AnimalService } from '../../Animals/animal.service';
 import { ShelterService } from '../../Shelters/shelter.service';
@@ -17,21 +17,18 @@ export class CarouselComponent {
   isScreenWideEnough = screen.width > 768 ? signal("carousel3-img place-self-center ") : signal("carousel-img ");
   isFitting = screen.width > 768 ? signal(true) : signal(false);
   route: ActivatedRoute = inject(ActivatedRoute);
+  refugeId : string | undefined;
 
   constructor() {
     const animalId = parseInt(this.route.snapshot.params['animalId'], 10);
     const shelterId = parseInt(this.route.snapshot.params['shelterId'], 10);
 
     if(animalId) {
-      this.animalService
-        .getAllAnimals()
-        .then((animalList: AnimalInfos[]) => {
-          this.animalList = animalList;
+      this.animalService.getAnimalById(animalId).then((animal) => {
+        this.shelterService.getShelterById(Number(animal?.association_id)).then((shelter) => {
+          this.animalList = shelter?.pensionnaires
+        })
       })
-      //!TODO Filter by the same shelter ID as current Animal
-      /* this.animalList = this.animalList?.filter((animal) => {
-        animal.refuge.id === this.refugeId;
-      }) */
     }
 
     if(shelterId) {
@@ -48,6 +45,45 @@ export class CarouselComponent {
         .then((animalList: AnimalInfos[]) => {
           this.animalList = animalList;
       })
+    }
+  }
+
+
+  i = 0;
+
+  getPrevious() {
+    if(screen.width < 768) {
+    const carouselPics = document.querySelectorAll('.carousel-img');
+      if(carouselPics.length > 0 && this.i > 0) {
+        carouselPics[this.i].classList.toggle('hidden');
+        carouselPics[this.i-1].classList.toggle('hidden');
+        this.i--
+      }
+    } else {
+      const carouselPics = document.querySelectorAll('.carousel3-img');
+      if(carouselPics.length > 0 && this.i > 0) {
+        carouselPics[this.i+2].classList.toggle('hidden');
+        carouselPics[this.i-1].classList.toggle('hidden');
+        this.i--
+      }
+    }
+  }
+
+    getNext() {
+    if(screen.width < 768) {
+      const carouselPics = document.querySelectorAll('.carousel-img');
+      if(carouselPics.length > 0 && this.i < carouselPics.length - 1) {
+        carouselPics[this.i].classList.toggle('hidden');
+        carouselPics[this.i+1].classList.toggle('hidden');
+        this.i++
+      }
+    } else {
+      const carouselPics = document.querySelectorAll('.carousel3-img');
+      if(carouselPics.length > 0 && this.i < carouselPics.length - 3) {
+        carouselPics[this.i].classList.toggle('hidden');
+        carouselPics[this.i+3].classList.toggle('hidden');
+        this.i++
+      }
     }
   }
 }
