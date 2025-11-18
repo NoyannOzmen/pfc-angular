@@ -1,6 +1,6 @@
 <div class="bg-zoning rounded-lg shadow flex flex-col">
   <div class="relative md:w-full flex justify-center items-center">
-    @if ( shelter().images_association ) {
+    @if ( shelter().images_association.length ) {
       @for(image of shelter().images_association; track $index) {
         <img class="font-body rounded-lg"
         [src]="image.url" alt="Logo de {{ shelter().nom }}" />

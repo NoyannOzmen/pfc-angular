@@ -8,5 +8,18 @@ import { RouterModule } from '@angular/router';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  //TODO Add ScrollUp
+  windowScrolled : boolean = false
+
+  ngOnInit() {
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.pageYOffset !== 0;
+    });
+    }
+
+  scrollUp() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 }

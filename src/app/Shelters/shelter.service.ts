@@ -11,7 +11,9 @@ export class ShelterService {
   async getAllShelters() : Promise<AssociationInfos[]> {
     const shelters = await fetch(this.url).then(res => res.json());
     shelters.forEach((shelter : AssociationInfos) => {
-      shelter.images_association[0].url = environment.apiUrl + shelter.images_association[0].url;
+      if(shelter.images_association.length) {
+        shelter.images_association[0].url = environment.apiUrl + shelter.images_association[0].url;
+      }
     });
     return (await shelters) ?? [];
   }
