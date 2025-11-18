@@ -8,6 +8,17 @@ import { DemandeInfos, FamilleInfos } from '../../models/models';
 export class UserFosterService {
   url = environment.apiUrl;
 
+  async getProfileInfos(id: number) : Promise<FamilleInfos> {
+    const token = sessionStorage.getItem("token")
+    const famille = await fetch(`${this.url}/famille/profil/${id}`, {
+      headers: {
+        "Content-type" : "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    }).then(res => res.json());
+    return famille;
+  }
+
   async getCurrentRequests(id : number) : Promise<DemandeInfos[]> {
     const token = sessionStorage.getItem("token")
     const currentRequests = await fetch(`${this.url}/demandes`, {

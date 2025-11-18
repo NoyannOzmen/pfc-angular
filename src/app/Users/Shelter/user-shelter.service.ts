@@ -8,6 +8,17 @@ import { environment } from '../../../environments/environment';
 export class UserShelterService {
   url = environment.apiUrl + '/associations'
 
+  async getDashboardInfos(id: number) : Promise<AssociationInfos> {
+    const token = sessionStorage.getItem("token")
+    const shelter = await fetch(`${this.url}/profil/${id}`, {
+      headers: {
+        "Content-type" : "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    }).then(res => res.json());
+    return shelter;
+  }
+
   async getRequested(id : number) : Promise<AnimalInfos[]> {
     const token = sessionStorage.getItem("token")
     const requested = await fetch(`${this.url}/${id}/requested`, {

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth.service';
-import { UtilisateurInfos } from '../../../models/models';
+import { AssociationInfos, UtilisateurInfos } from '../../../models/models';
 import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
 import { DashboardSubNavComponent } from "../Shared/dashboard-sub-nav/dashboard-sub-nav.component";
 import { UserShelterService } from '../user-shelter.service';
@@ -17,7 +17,26 @@ export class ShelterDashboardComponent {
   authService : AuthService = inject(AuthService);
   user : UtilisateurInfos = this.authService.getUserData();
   shelterService : UserShelterService = inject(UserShelterService);
+  shelter : AssociationInfos | undefined;
   router : Router = inject(Router);
+
+  constructor() {
+    this.shelterService.getDashboardInfos(Number(this.user.refuge!.id)).then((shelter) => {
+      this.ShelterProfileForm.patchValue({
+        nom: shelter.nom,
+        responsable: shelter.responsable,
+        rue: shelter.rue,
+        commune: shelter.commune,
+        code_postal: shelter.code_postal,
+        pays: shelter.pays,
+        telephone: shelter.telephone,
+        siret: shelter.siret,
+        email: this.user.email,
+        site: shelter.site,
+        description: shelter.description,
+      })
+    })
+  }
 
     ShelterProfileForm = new FormGroup({
       nom : new FormControl({value : this.user.refuge?.nom, disabled : true}, [Validators.minLength(3), Validators.required]),
@@ -38,6 +57,20 @@ export class ShelterDashboardComponent {
   updateShelterInfos() {
     const updateInfos = this.ShelterProfileForm.value;
     this.shelterService.updateShelterInfos(updateInfos);
+
+    this.ShelterProfileForm.patchValue({
+      nom: updateInfos.nom,
+      responsable: updateInfos.responsable,
+      rue: updateInfos.rue,
+      commune: updateInfos.commune,
+      code_postal: updateInfos.code_postal,
+      pays: updateInfos.pays,
+      telephone: updateInfos.telephone,
+      siret: updateInfos.siret,
+      email: updateInfos.email,
+      site: updateInfos.site,
+      description: updateInfos.description,
+    })
   }
 
   isHidden : boolean = true;
