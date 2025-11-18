@@ -27,7 +27,7 @@
               @for(espece of speciesList; track $index) {
                 <div>
                   <label for={{espece.nom}}>{{ espece.nom }}</label>
-                  <input onChange={handleCheck} type="checkbox" name="espece" id={{espece.nom}} value={{espece.nom}} #filterSpecies/>
+                  <input (click)="addtoSpeciesList($event, `${espece.id}`)" type="checkbox" name="espece" id={{espece.nom}} value={{espece.nom}} #filterSpecies/>
                 </div>
               }
           </fieldset>

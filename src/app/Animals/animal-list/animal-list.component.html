@@ -59,7 +59,7 @@
           @for(tag of tagList; track $index) {
             <div>
               <label for={{tag.nom}}>{{ tag.nom }}</label>
-              <input type="checkbox" name="tag" formControlName="tag" id={{tag.nom}} value={{tag.nom}} #filterTags />
+              <input (click)="addtoTagList($event, `${tag.id}`)" type="checkbox" name="tag" formControlName="tag" id={{tag.nom}} value={{tag.nom}} #filterTags />
             </div>
           }
         </div>

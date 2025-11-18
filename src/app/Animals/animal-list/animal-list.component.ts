@@ -15,7 +15,7 @@ export class AnimalListComponent {
   animalList: AnimalInfos[] = [];
   animalService: AnimalService = inject(AnimalService);
   filteredAnimalList : AnimalInfos[] = [];
-
+  animalTagList : Array<number> = []
   speciesList: EspeceInfos[] = [];
   tagList: TagInfos[] = [];
   searchService: SearchService = inject(SearchService);
@@ -56,8 +56,16 @@ export class AnimalListComponent {
     );
   }
 
-  filterResultsFull(especeDropdownFull: string, sexe : string, minAge : number, maxAge : number, /* tags : Array<string>, */ dptSelect : string) {
-    if (!especeDropdownFull && !dptSelect && !minAge && !maxAge && !sexe /* && !tags */) {
+  addtoTagList(event : any, id : string) {
+    if(event.target.checked) {
+      this.animalTagList.push(Number(id))
+    } else {
+      this.animalTagList = this.animalTagList.filter((tagId) => tagId !== Number(id))
+    }
+  }
+
+  filterResultsFull(especeDropdownFull: string, sexe : string, minAge : number, maxAge : number, dptSelect : string) {
+    if (!especeDropdownFull && !dptSelect && !minAge && !maxAge && !sexe && this.animalTagList.length < 0) {
       this.filteredAnimalList = this.animalList;
       return;
     }
@@ -86,9 +94,21 @@ export class AnimalListComponent {
         animal.age < maxAge
     )} else { this.filteredAnimalList = this.filteredAnimalList }
 
-    /* if(tags.length) {
-      this.filteredAnimalList = this.animalList.filter((animal) =>
-        animal.tags.nom.includes(this.tag.nom)
-    )} */
+    if(this.animalTagList.length > 0) {
+      let tagFilteringArray : Array<AnimalInfos> = [];
+
+      this.filteredAnimalList.forEach((animal) =>
+        this.animalTagList.forEach((identification) => {
+          const found = animal.tags.some(tag => Number(tag.id) === identification);
+          if(!found && !tagFilteringArray.includes(animal)) {
+            tagFilteringArray.push(animal)
+          }
+          if(found && tagFilteringArray.includes(animal)) {
+             tagFilteringArray = tagFilteringArray.filter((a) => a !== animal)
+            }
+        })
+      )
+      this.filteredAnimalList = tagFilteringArray;
+    } else { this.filteredAnimalList = this.filteredAnimalList}
   }
 }
