@@ -58,9 +58,12 @@ export class ShelterResidentAddProfileComponent {
     this.displayModal();
   }
 
-  addtoTagList(id : string) {
-    //TODO Fix this
-    this.animalTagList.push(Number(id))
+  addtoTagList(event : any, id : string) {
+    if(event.target.checked) {
+      this.animalTagList.push(Number(id))
+    } else {
+      this.animalTagList = this.animalTagList.filter((element) => element !== Number(id))
+    }
   }
 
   animalCreationForm = new FormGroup({
@@ -71,14 +74,14 @@ export class ShelterResidentAddProfileComponent {
     race_animal: new FormControl('', Validators.minLength(3)),
     couleur_animal: new FormControl('', [Validators.minLength(3), Validators.required]),
     description_animal: new FormControl('', [Validators.minLength(3), Validators.required]),
-    tags: new FormControl(''),
+    tags: new FormControl(),
     association_id: new FormControl('')
   })
 
   handleCreateAnimal() {
     const animalInfos = this.animalCreationForm.value;
     if(this.animalTagList.length > 0) {
-      animalInfos.tags = JSON.stringify(this.animalTagList);
+      animalInfos.tags = this.animalTagList;
     }
     animalInfos.association_id = this.user.refuge?.id;
     this.shelterService.createAnimal(animalInfos);

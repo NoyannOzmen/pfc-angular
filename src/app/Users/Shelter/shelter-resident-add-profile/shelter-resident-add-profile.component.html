@@ -78,8 +78,8 @@
               <fieldset name="tags-animal" id="tags-animal" class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full px-2 py-1">
                 @for(tag of tagList; track $index) {
                   <div class="flex gap-x-1.5 w-full">
-                    <input (click)="addtoTagList(`${tag.id}`)" type="checkbox" id={{tag.id}} name={{tag.id}} value={{tag.id}} class="leading-3 size-6"/>
-                    <label for={{tag.id}} class="block font-grands text-xs leading-3">{{ tag.nom }}</label>
+                    <input (click)="addtoTagList($event, `${tag.id}`)" type="checkbox" id="tag_{{tag.id}}" name="tag_{{tag.id}}" value={{tag.id}} class="leading-3 size-6"/>
+                    <label for="tag_{{tag.id}}" class="block font-grands text-xs leading-3">{{ tag.nom }}</label>
                   </div>
                 }
               </fieldset>

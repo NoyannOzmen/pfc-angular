@@ -23,6 +23,8 @@ export class ShelterResidentListComponent {
 
   sheltered : AnimalInfos[] | undefined = [];
   filtered : AnimalInfos[] | undefined = [];
+  filterArray : Array<number> = [];
+  statusFilterArray : Array<string> = [];
 
   isHidden : boolean = true
   displayDropdown() {
@@ -54,26 +56,38 @@ export class ShelterResidentListComponent {
     );
   }
 
-  //TODO Make multiple selection possible
-  filterStatus(status : string) {
-    if (!status) {
-      this.filtered = this.sheltered;
-      return;
+  filterStatus(event : any, status : string) {
+    if(event.target.checked) {
+      this.statusFilterArray.push(status)
+    } else {
+      this.statusFilterArray = this.statusFilterArray.filter((s) => s !== status)
     }
-    this.filtered = this.sheltered?.filter((animal) =>
-      animal.statut.toLowerCase().includes(status.toLowerCase()),
-    );
+
+    if(this.statusFilterArray.length) {
+      this.statusFilterArray.forEach((status) => {
+        this.filtered = (this.filtered?.length ? this.filtered : this.sheltered)?.filter((animal) =>
+          animal.statut.toLowerCase().includes(status.toLowerCase()),
+        );
+      })
+    } else {
+      this.filtered = this.sheltered;
+    }
   }
 
-  //TODO Make multiple selection possible
-  filterSpecies(espece : string) {
-    if (!espece) {
-      this.filtered = this.sheltered;
-      return;
+  filterSpecies(event: any, id : string) {
+    if(event.target.checked) {
+      this.filterArray.push(Number(id))
+    } else {
+      this.filterArray = this.filterArray.filter((speciesId) => speciesId !== Number(id))
     }
-    this.filtered = this.sheltered?.filter((animal) =>
-      animal.espece.nom.toLowerCase().includes(espece.toLowerCase()),
-    );
+
+    if(this.filterArray.length) {
+      this.filterArray.forEach((species) => {
+        this.filtered = (this.filtered?.length ? this.filtered : this.sheltered)?.filter((animal) => Number(animal.espece.id) === species)
+      })
+    } else {
+      this.filtered = this.sheltered
+    }
   }
 
   clearStatusFilter() {

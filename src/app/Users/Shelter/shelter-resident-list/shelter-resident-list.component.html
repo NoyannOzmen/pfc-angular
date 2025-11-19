@@ -22,7 +22,7 @@
             <fieldset>
               @for(espece of speciesList; track $index) {
                 <div key={espece.id} class="flex gap-x-1.5 content-center mb-1">
-                  <input (click)="filterSpecies(`${espece.nom}`)" type="checkbox" id="espece_{{espece.id}}" name="espece_{{espece.id}}" value="espece_{{espece.id}}" class="species-checkbox checkbox leading-3"/>
+                  <input (click)="filterSpecies($event, `${espece.id}`)" type="checkbox" id="espece_{{espece.id}}" name="espece_{{espece.id}}" value="espece_{{espece.id}}" class="species-checkbox checkbox leading-3"/>
                   <label for="espece_{{espece.id}}" class="font-grands font-semibold text-xs leading-3 self-center">{{ espece.nom }}</label>
                 </div>
               }
@@ -34,17 +34,17 @@
 
             <fieldset>
               <div class="flex gap-x-1.5 content-center">
-                <input (click)="filterStatus(Sheltered.value)" type="checkbox" id="statut_En_refuge" name="satut_En_refuge" value="En refuge" class="mb-1 statut-checkbox checkbox leading-3" #Sheltered/>
+                <input (click)="filterStatus($event, Sheltered.value)" type="checkbox" id="statut_En_refuge" name="satut_En_refuge" value="En refuge" class="mb-1 statut-checkbox checkbox leading-3" #Sheltered/>
                 <label for="satut_En_refuge" class=" font-grands font-semibold text-xs leading-3 self-center" #status>En refuge</label>
               </div>
 
               <div class="flex gap-x-1.5 content-center">
-                <input (click)="filterStatus(Fostered.value)" type="checkbox" id="statut_Accueilli" name="satut_Accueilli" value="Accueilli" class="mb-1 statut-checkbox checkbox leading-3" #Fostered/>
+                <input (click)="filterStatus($event, Fostered.value)" type="checkbox" id="statut_Accueilli" name="satut_Accueilli" value="Accueilli" class="mb-1 statut-checkbox checkbox leading-3" #Fostered/>
                 <label for="satut_Accueilli" class=" font-grands font-semibold text-xs leading-3 self-center">Accueilli</label>
               </div>
 
               <div class="flex gap-x-1.5 content-center">
-                <input (click)="filterStatus(Adopted.value)" type="checkbox" id="satut_Adopté" name="satut_Adopté" value="Adopté"  class="mb-1 statut-checkbox checkbox leading-3" #Adopted/>
+                <input (click)="filterStatus($event, Adopted.value)" type="checkbox" id="satut_Adopté" name="satut_Adopté" value="Adopté"  class="mb-1 statut-checkbox checkbox leading-3" #Adopted/>
                 <label for="satut_Adopté" class=" font-grands font-semibold text-xs leading-3 self-center">Adopté</label>
               </div>
 
