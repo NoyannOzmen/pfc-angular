@@ -9,5 +9,17 @@ import { HeaderNavigationComponent } from '../header-navigation/header-navigatio
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  mobileMenu() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector("#nav-links");
+    hamburger?.classList.toggle("active");
+    navMenu?.classList.toggle("active");
+  }
 
+  closeMenu() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector("#nav-links");
+    hamburger?.classList.remove("active");
+    navMenu?.classList.remove("active");
+  }
 }

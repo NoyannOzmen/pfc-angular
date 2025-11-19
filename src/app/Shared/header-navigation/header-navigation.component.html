@@ -1,9 +1,9 @@
 <nav class="rounded-br-lg md:rounded-b-lg flex-auto  bg-accents2-dark text-fond p-3 text-base md:text-lg md:mr-4">
   <ul class="flex flex-col md:flex-row flex-nowrap justify-around">
     @if (isAuthenticated()) {
-      <app-header-logged class="flex"></app-header-logged>
+      <app-header-logged class="flex mx-auto"></app-header-logged>
     } @else {
-      <app-header-login class="flex"></app-header-login>
+      <app-header-login class="flex mx-auto py-2"></app-header-login>
     }
   </ul>
 </nav>

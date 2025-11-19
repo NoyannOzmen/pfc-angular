@@ -8,14 +8,12 @@
     </div>
   </a>
 
-  <div class="hamburger absolute top-0 right-4 p-4">
-    <!-- onClick={mobileMenu} -->
+  <div (click)="mobileMenu()" class="hamburger absolute top-0 right-4 p-4">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
-  <div class="grow flex flex-col md:flex-row flex-auto max-[767px]:nav-links" id="nav-links">
-  <!-- onClick={closeMenu} -->
+  <div (click)="closeMenu()" class="grow flex flex-col md:flex-row flex-auto max-[767px]:nav-links" id="nav-links">
     <div class="flex flex-auto flex-col place-self-center w-full md:w-[625px] md:flex-row-reverse md:absolute md:top-0 md:right-0">
       <app-header-navigation></app-header-navigation>
 
