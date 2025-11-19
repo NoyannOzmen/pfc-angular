@@ -24,6 +24,7 @@ export class AnimalDetailsComponent {
   isFoster = this.authService.hasRole('foster')
   fosterService : UserFosterService = inject(UserFosterService)
   animalId = parseInt(this.route.snapshot.params['animalId'], 10)
+  userMessage : string = '';
 
   constructor() {
     this.animalService.getAnimalById(this.animalId).then((animal) => {
@@ -31,7 +32,8 @@ export class AnimalDetailsComponent {
     });
   }
 
-  makeRequest() {
-    this.fosterService.makeRequest(this.animalId);
+  async makeRequest() {
+    const feedback = await this.fosterService.makeRequest(this.animalId);
+    this.userMessage = feedback
   }
 }

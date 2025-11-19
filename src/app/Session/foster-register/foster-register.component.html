@@ -5,13 +5,9 @@
 
     <form class="flex flex-col flex-wrap content-center justify-around text-texte" [formGroup]="fosterRegisterForm" (ngSubmit)="onSubmit()">
 
-      <!--
-      {userMessage &&
-        <div>
-          <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
-        </div>
+      @if(userMessage) {
+        <p class="font-grands font-base text-accents1 text-center">{{userMessage}}</p>
       }
-      -->
 
       <fieldset class="font-body rounded-lg shadow my-2 py-5">
         <legend class="font-bold text-lg font-grands text-center">Vos informations</legend>

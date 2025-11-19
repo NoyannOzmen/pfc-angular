@@ -8,21 +8,21 @@ import { AssociationInfos, FamilleInfos } from '../models/models';
 export class RegisterService {
   url = environment.apiUrl;
 
-  async registerFoster(registerInfos : Object ) : Promise<FamilleInfos> {
-    const newFoster = await fetch(`${this.url}/famille/inscription`, {
+  async registerFoster(registerInfos : Object ) : Promise<string> {
+    const data = await fetch(`${this.url}/famille/inscription`, {
       method : "POST",
       headers: { "Content-type" : "application/json" },
       body : JSON.stringify(registerInfos)
     }).then(res => res.json());
-    return (await newFoster) ?? {};
+    return (await data.message) ?? {};
   }
 
-  async registerShelter(registerInfos : Object ) : Promise<AssociationInfos> {
-    const newShelter = await fetch(`${this.url}/association/inscription`, {
+  async registerShelter(registerInfos : Object ) : Promise<string> {
+    const data = await fetch(`${this.url}/association/inscription`, {
       method : "POST",
       headers: { "Content-type" : "application/json" },
       body : JSON.stringify(registerInfos)
     }).then(res => res.json());
-    return (await newShelter) ?? {};
+    return (await data.message) ?? {};
   }
 }

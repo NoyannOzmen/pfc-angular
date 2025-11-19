@@ -163,14 +163,15 @@ export class UserShelterService {
     }).then((res => res.json))
   }
 
-  async deleteShelterAccount() : Promise<void> {
+  async deleteShelterAccount() : Promise<string> {
     const token = sessionStorage.getItem("token");
-    await fetch(environment.apiUrl + '/association/profil/delete', {
+    const data = await fetch(environment.apiUrl + '/association/profil/delete', {
       method : "POST",
       headers : {
         "Content-type" : "application/json",
         "Authorization" : `Bearer ${token}`
       }
     }).then(res => res.json());
+    return (await data.message) ?? {}
   }
 }

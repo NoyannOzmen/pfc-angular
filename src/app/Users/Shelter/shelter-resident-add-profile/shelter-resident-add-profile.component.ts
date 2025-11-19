@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
 import { ResidentSubNavComponent } from "../Shared/resident-sub-nav/resident-sub-nav.component";
 import { EspeceInfos, TagInfos, UtilisateurInfos } from '../../../models/models';
@@ -22,6 +22,7 @@ export class ShelterResidentAddProfileComponent {
   authService : AuthService = inject(AuthService)
   animalTagList : Array<number> = []
   user : UtilisateurInfos = this.authService.getUserData();
+  router : Router = inject(Router)
 
   isHidden : boolean = true;
   displayModal() {
@@ -85,6 +86,7 @@ export class ShelterResidentAddProfileComponent {
     }
     animalInfos.association_id = this.user.refuge?.id;
     this.shelterService.createAnimal(animalInfos);
-    this.animalCreationForm.reset()
+    this.animalCreationForm.reset();
+    this.router.navigateByUrl('/associations/profil/animaux')
   }
 }

@@ -7,18 +7,16 @@
           <section class="flex flex-wrap justify-center" id="dashboard-container">
             <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Mon profil</h3>
 
-            <!--
-            {userMessage &&
+            @if(userMessage) {
               <div>
-                <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+                <p class="font-grands font-base text-accents1 text-center">{{userMessage}}</p>
               </div>
             }
-            -->
 
             <form class="flex flex-col content-center md:w-[60%] justify-center text-texte" [formGroup]="ShelterProfileForm">
 
               <fieldset class="shrink font-body rounded-lg shadow my-2 py-5">
-                <legend class="text-center">Mon organisme&nbsp;<span tabIndex={0} class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
+                <legend class="text-center">Mon organisme&nbsp;<span tabindex="0" class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
 
                 <div class="mx-auto p-2">
                   <label class="text-center" for="nom">Nom</label>

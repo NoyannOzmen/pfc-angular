@@ -30,7 +30,7 @@ export class UserFosterService {
     return (await currentRequests) ?? [];
   }
 
-  async makeRequest(id : number) : Promise<void> {
+  async makeRequest(id : number) : Promise<string> {
     const token = sessionStorage.getItem("token");
     const data = await fetch(`${this.url}/animaux/${id}/faire-une-demande`, {
       method : "POST",
@@ -39,7 +39,7 @@ export class UserFosterService {
         "Authorization" : `Bearer ${token}`
       }
     }).then(res => res.json());
-    return data.message
+    return (await data.message) ?? {}
   }
 
   async updateFosterInfos(updateInfos : Object) : Promise<FamilleInfos> {
@@ -55,14 +55,15 @@ export class UserFosterService {
     return (await updatedFoster) ?? {}
   }
 
-  async deleteFosterAccount() : Promise<void> {
+  async deleteFosterAccount() : Promise<string> {
     const token = sessionStorage.getItem("token");
-    await fetch(`${this.url}/famille/profil/delete`, {
+    const data = await fetch(`${this.url}/famille/profil/delete`, {
       method : "POST",
       headers : {
         "Content-type" : "application/json",
         "Authorization" : `Bearer ${token}`
       }
     }).then(res => res.json());
+    return (await data.message) ?? {}
   }
 }

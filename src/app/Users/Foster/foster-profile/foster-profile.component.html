@@ -4,8 +4,8 @@
 
     <nav class="flex flex-wrap justify-center md:justify-start">
       <ul class="flex flex-wrap-reverse gap-x-2 mx-3 justify-center font-semibold md:justify-start md:ml-10 text-xl">
-        <li><a [routerLink]="['/famille/profil']" tabIndex={0}><button id="dashbtn-1" class="dashbtn dashbtn-active" tabIndex={-1}>Mon profil</button></a></li>
-        <li><a [routerLink]="['/famille/profil/demandes']" tabIndex={0}><button id="dashbtn-2" class="dashbtn" tabIndex={-1}>Demandes</button></a></li>
+        <li><a [routerLink]="['/famille/profil']" tabindex="0"><button id="dashbtn-1" class="dashbtn dashbtn-active">Mon profil</button></a></li>
+        <li><a [routerLink]="['/famille/profil/demandes']" tabindex="0"><button id="dashbtn-2" class="dashbtn">Demandes</button></a></li>
       </ul>
       <div class="mx-2 grow w-[90%] h-2 bg-accents1-dark rounded-t-lg"></div>
     </nav>
@@ -15,16 +15,16 @@
       <section class="flex flex-wrap justify-center" id="dashboard-container">
         <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">Mon profil</h3>
 
-        <!-- {userMessage &&
+        @if(userMessage) {
           <div>
-            <p class="font-grands font-base text-accents1 text-center">{userMessage}</p>
+            <p class="font-grands font-base text-accents1 text-center">{{userMessage}}</p>
           </div>
-        } -->
+        }
 
         <form class="flex flex-col flex-wrap content-center justify-around text-texte w-full" [formGroup]="FosterProfileForm">
 
           <fieldset class="w-[60%] font-body rounded-lg shadow my-2 py-5">
-            <legend class="text-center">Mes informations&nbsp;<span tabIndex={0} class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
+            <legend class="text-center">Mes informations&nbsp;<span tabindex="0" class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
 
             <div class="mx-auto p-2">
               <label class="text-center w-full" for="prenom">Prénom</label>
@@ -41,7 +41,7 @@
           </fieldset>
 
           <fieldset class="font-body rounded-lg shadow my-2 py-5">
-            <legend class="text-center">Mon accueil&nbsp;<span tabIndex={0} class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
+            <legend class="text-center">Mon accueil&nbsp;<span tabindex="0" class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
 
               <div class="mx-auto p-2">
                 <label class="text-center w-full" for="hebergement">Type</label>

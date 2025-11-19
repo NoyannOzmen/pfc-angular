@@ -12,6 +12,7 @@ import { RegisterService } from '../register.service';
 export class ShelterRegisterComponent {
   router : Router = inject(Router)
   registerService : RegisterService = inject(RegisterService);
+  userMessage : string = '';
 
   shelterRegisterForm = new FormGroup({
       nom : new FormControl('', [Validators.minLength(3), Validators.required]),
@@ -29,10 +30,14 @@ export class ShelterRegisterComponent {
       confirmation: new FormControl('', [Validators.minLength(8), Validators.required])
   })
 
-  onSubmit() {
+  async onSubmit() {
     const registerInfos = this.shelterRegisterForm.value;
-    this.registerService.registerShelter(registerInfos);
-    this.shelterRegisterForm.reset();
-    this.router.navigateByUrl('/')
+    const data = await this.registerService.registerShelter(registerInfos);
+    if(data) {
+      this.userMessage = data
+    } else {
+      this.shelterRegisterForm.reset();
+      this.router.navigateByUrl('/')
+    }
   }
 }

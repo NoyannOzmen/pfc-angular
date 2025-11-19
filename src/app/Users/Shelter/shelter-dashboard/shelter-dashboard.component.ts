@@ -19,6 +19,7 @@ export class ShelterDashboardComponent {
   shelterService : UserShelterService = inject(UserShelterService);
   shelter : AssociationInfos | undefined;
   router : Router = inject(Router);
+  userMessage : string = '';
 
   constructor() {
     this.shelterService.getDashboardInfos(Number(this.user.refuge!.id)).then((shelter) => {
@@ -82,9 +83,13 @@ export class ShelterDashboardComponent {
     this.ShelterProfileForm.enable();
   };
 
-  handleDeleteAccount() {
-    this.shelterService.deleteShelterAccount();
-    this.authService.logOut();
-    this.router.navigateByUrl('/')
+  async handleDeleteAccount() {
+    const data = await this.shelterService.deleteShelterAccount();
+    if(data) {
+      this.userMessage = data
+    } else {
+      this.authService.logOut();
+      this.router.navigateByUrl('/')
+    }
   }
 }

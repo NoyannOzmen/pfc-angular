@@ -16,7 +16,8 @@ export class FosterProfileComponent {
   user : UtilisateurInfos = this.authService.getUserData();
   fosterService : UserFosterService = inject(UserFosterService);
   famille : FamilleInfos | undefined;
-  router : Router = inject(Router)
+  router : Router = inject(Router);
+  userMessage : string = '';
 
   constructor() {
     this.fosterService.getProfileInfos(Number(this.user.accueillant!.id)).then((famille) => {
@@ -75,9 +76,13 @@ export class FosterProfileComponent {
     this.FosterProfileForm.enable();
   };
 
-  handleDeleteAccount() {
-    this.fosterService.deleteFosterAccount();
-    this.authService.logOut();
-    this.router.navigateByUrl('/');
+  async handleDeleteAccount() {
+    const data = await this.fosterService.deleteFosterAccount();
+    if(data) {
+      this.userMessage = data
+    } else {
+      this.authService.logOut();
+      this.router.navigateByUrl('/');
+    }
   }
 }

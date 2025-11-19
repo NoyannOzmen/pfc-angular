@@ -1,5 +1,5 @@
 
-<tr (click)="[toggle(), findCurrentRequest(`${animal().id}`)]" tabIndex={0} class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
+<tr (click)="[toggle(), findCurrentRequest(`${animal().id}`)]" tabindex="0" class="view text-fond text-sm bg-accents2 font-grands font-semibold p-3 border-accents2-dark border-solid border hover:bg-accents2-dark">
   <td colSpan="4" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal().nom}}</td>
   <td colSpan="2" scope="colgroup" class="px-2 pt-2 border-accents2-dark border-solid border">{{animal().demandes.length}}</td>
 </tr>
@@ -12,6 +12,6 @@
   <tr class="fold text-sm font-body font-semibold" [class.hidden]="isHidden" ng-repeat="demande in animal.demandes" ng-class-even='bg-fond' ng-class-odd='text-fond bg-accents2-light'>
       <td colSpan="2">{{demande.famille.nom}}</td>
       <td colSpan="2">{{demande.date_debut}}</td>
-      <td colSpan="2"><a tabIndex={0} class="hover:underline" [routerLink]="['/association/profil/demandes/', demande.id ]">{{demande.statut_demande}}</a></td>
+      <td colSpan="2"><a tabindex="0" class="hover:underline" [routerLink]="['/association/profil/demandes/', demande.id ]">{{demande.statut_demande}}</a></td>
   </tr>
 }

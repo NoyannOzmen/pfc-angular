@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class FosterRegisterComponent {
   router : Router = inject(Router)
   registerService : RegisterService = inject(RegisterService);
+  userMessage : string = '';
 
   fosterRegisterForm = new FormGroup({
       prenom: new FormControl('', Validators.minLength(2)),
@@ -28,10 +29,15 @@ export class FosterRegisterComponent {
       confirmation: new FormControl('', [Validators.minLength(8), Validators.required])
   })
 
-  onSubmit() {
+  async onSubmit() {
     const registerInfos = this.fosterRegisterForm.value;
-    this.registerService.registerFoster(registerInfos);
-    this.fosterRegisterForm.reset();
-    this.router.navigateByUrl('/')
+    const data = await this.registerService.registerFoster(registerInfos);
+    if(data) {
+      this.userMessage = data
+    } else {
+      this.fosterRegisterForm.reset();
+      this.router.navigateByUrl('/')
+    }
+
   }
 }

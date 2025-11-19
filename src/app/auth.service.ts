@@ -8,7 +8,7 @@ import { MediaInfos, UtilisateurInfos } from './models/models';
 export class AuthService {
   url = environment.apiUrl;
 
-  async logIn(credentials : any): Promise<UtilisateurInfos[]> {
+  async logIn(credentials : any): Promise<string> {
     const data = await fetch(`${this.url}/connexion`, {
       method: 'POST',
       headers: { "Content-type" : "application/json" },
@@ -31,7 +31,7 @@ export class AuthService {
 
       }
     }
-    return (await user) ?? {};
+    return (await data.message) ?? {};
   }
 
   logOut() {
