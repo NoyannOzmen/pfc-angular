@@ -5,7 +5,8 @@
 ## Disclaimer
 
 Ce dépôt contient une conversion de la partie front-end du projet PetFosterConnect en Angular, tout en préservant ses fonctionnalités.
-Ne contenant que la partie front, ce dépôt se doit d'être utilisé avec une des API pré-existantes.
+
+Celui-ci ne contient que la partie front du projet, et devra être utilisé avec l'API en NestJS déjà existante.
 
 ## Présentation
 
@@ -23,12 +24,11 @@ PFC a pour vocation de répondre à plusieurs besoins :
 
 Pour réaliser cette application, nous nous sommes servis de :
 
-|   **Nom**      |     **Utilité**   |
+|   **Nom**      |     **Fonction**   |
 | -------------- | ----------------- |
-| Angular | Framework Front |
-| TypeScript | Langage Front |
+| Angular | Framework |
+| TypeScript | Langage |
 | Tailwind | CSS |
-| ... | ... |
 
 ## Installation
 
