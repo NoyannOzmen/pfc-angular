@@ -1,4 +1,4 @@
-<main class="justify-self-stretch flex-1">
+<main class="h-full pt-12">
   <section class="flex flex-col mx-auto mt-2">
     <h2 class="font-grands text-2xl md:text-3xl text-center w-full my-6">{{ shelter?.nom }}</h2>
 
@@ -31,7 +31,7 @@
     </article>
   </section>
 
-  <section class="p-2 block">
+  <section class="p-2 block w-[80%] mx-auto">
     @if(shelter?.pensionnaires) {
     <h2 class="font-grands text-xl text-center my-2 md:md:text-2xl">Ils vous y attendent de patte ferme !</h2>
       <app-carousel></app-carousel>

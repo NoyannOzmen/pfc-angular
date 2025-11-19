@@ -1,9 +1,9 @@
-<main class="justify-self-stretch flex-1">
+<main class="h-full pt-12">
   <!-- Menu de recherche -->
-  <div class="md:my-3 flex flex-wrap font-body w-full bg-zoning rounded-lg shadow justify-around">
-    <form class="text-texte justify-around">
+  <div class="md:my-3 flex flex-wrap font-body w-[80%] mx-auto bg-zoning rounded-lg shadow justify-around">
+    <form class="text-texte justify-around pb-4">
       <div id="fullSearch" class="mx-2 col-span-3 items-center flex flex-wrap justify-around" [class.hidden]="!isHidden">
-        <h2 class="font-grands text-2xl w-full my-2 text-center">Rechercher un animal</h2>
+        <h2 class="font-grands text-3xl w-full my-6 pb-4 text-center">Rechercher un animal</h2>
         <label for="espece-dropdown-small">Par espèce</label>
         <select tabindex="0" class="col-span-3 text-xs block w-[50%] bg-fond" id="espece-dropdown-small" name="especeDropdownSmall" formControlName="especeDropdownSmall" defaultValue="defaultSmall" #filterEspeceSmall>
           <option value="">--Choisissez une espèce--</option>
@@ -82,7 +82,7 @@
   </div>
 
   @if(filteredAnimalList.length > 0) {
-    <div class="grid grid-flow-row-dense grid-cols-3 gap-3 m-3">
+    <div class="grid grid-flow-row-dense grid-cols-3 gap-3 m-3 my-8">
       @for(animal of filteredAnimalList; track $index) {
         <app-animal-card [animal]="animal"></app-animal-card>
       }
