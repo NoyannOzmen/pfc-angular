@@ -25,7 +25,7 @@ export class CarouselComponent {
 
     if(animalId) {
       this.animalService.getAnimalById(animalId).then((animal) => {
-        this.shelterService.getShelterById(Number(animal?.association_id)).then((shelter) => {
+        this.shelterService.getShelterById(Number(animal?.refuge.id)).then((shelter) => {
           this.animalList = shelter?.pensionnaires
         })
       })

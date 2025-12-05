@@ -87,6 +87,6 @@ export class ShelterResidentAddProfileComponent {
     animalInfos.association_id = this.user.refuge?.id;
     this.shelterService.createAnimal(animalInfos);
     this.animalCreationForm.reset();
-    this.router.navigateByUrl('/associations/profil/animaux')
+    this.router.navigateByUrl('/association/profil/animaux')
   }
 }
