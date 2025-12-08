@@ -33,7 +33,7 @@ export class ShelterRegisterComponent {
   async onSubmit() {
     const registerInfos = this.shelterRegisterForm.value;
     const data = await this.registerService.registerShelter(registerInfos);
-    if(data) {
+    if(data.length) {
       this.userMessage = data
     } else {
       this.shelterRegisterForm.reset();

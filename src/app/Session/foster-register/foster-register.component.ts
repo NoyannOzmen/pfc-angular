@@ -32,7 +32,7 @@ export class FosterRegisterComponent {
   async onSubmit() {
     const registerInfos = this.fosterRegisterForm.value;
     const data = await this.registerService.registerFoster(registerInfos);
-    if(data) {
+    if((data.length)) {
       this.userMessage = data
     } else {
       this.fosterRegisterForm.reset();
