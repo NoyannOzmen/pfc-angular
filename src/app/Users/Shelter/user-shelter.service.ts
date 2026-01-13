@@ -89,7 +89,6 @@ export class UserShelterService {
     const formData = new FormData;
     formData.append("assoId", id)
     formData.append("file", file, file.name)
-    console.log(formData)
     const logo = await fetch(environment.apiUrl + "/upload/logo", {
       method : "POST",
       headers : {
