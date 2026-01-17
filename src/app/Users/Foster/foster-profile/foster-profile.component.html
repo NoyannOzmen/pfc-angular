@@ -34,9 +34,13 @@
               <label class="text-center w-full" for="nom">Nom</label>
               <input class="block w-full bg-fond" type="text" id="nom" name="nom" formControlName="nom" />
             </div>
-            <div class="mx-auto p-2">
+            <!-- <div class="mx-auto p-2">
               <label class="text-center w-full" for="email">Email</label>
               <input class="block w-full bg-fond" type="email" id="email" name="email" formControlName="email" autoComplete="email" />
+            </div> -->
+            <div class="mx-auto p-2">
+              <label class="text-center w-full" for="telephone">N° Téléphone</label>
+              <input class="block w-full bg-fond" type="tel" id="telephone" name="telephone" pattern="^(0|\+33 )[1-9]([\-. ]?[0-9]{2} ){3}([\-. ]?[0-9]{2})|([0-9]{8})$" formControlName="telephone" />
             </div>
           </fieldset>
 

@@ -83,6 +83,8 @@ export class ShelterResidentAddProfileComponent {
     const animalInfos = this.animalCreationForm.value;
     if(this.animalTagList.length > 0) {
       animalInfos.tags = this.animalTagList;
+    } else {
+      animalInfos.tags = []
     }
     animalInfos.association_id = this.user.refuge?.id;
     this.shelterService.createAnimal(animalInfos);
