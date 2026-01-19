@@ -87,7 +87,7 @@ export class UserShelterService {
   async updateLogo(file: File, id : string) : Promise<MediaInfos> {
     const token = sessionStorage.getItem("token");
     const formData = new FormData;
-    formData.append("assoId", id)
+    formData.append("asso_id", id)
     formData.append("file", file, file.name)
     const logo = await fetch(environment.apiUrl + "/upload/logo", {
       method : "POST",
@@ -103,7 +103,7 @@ export class UserShelterService {
     async updateAnimalPicture(file: File, id : string) : Promise<MediaInfos> {
     const token = sessionStorage.getItem("token");
     const formData = new FormData;
-    formData.append("animalId", id)
+    formData.append("animal_id", id)
     formData.append("file", file, file.name)
     const photo = await fetch(environment.apiUrl + "/upload/photo", {
       method : "POST",
