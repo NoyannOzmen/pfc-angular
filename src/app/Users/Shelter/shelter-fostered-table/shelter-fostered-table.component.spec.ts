@@ -7,9 +7,8 @@ describe('ShelterFosteredTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterFosteredTableComponent]
-    })
-    .compileComponents();
+      imports: [ShelterFosteredTableComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterFosteredTableComponent);
     component = fixture.componentInstance;

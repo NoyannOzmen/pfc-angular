@@ -8,9 +8,8 @@ describe('ShelterCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterCardComponent]
-    })
-    .compileComponents();
+      imports: [ShelterCardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterCardComponent);
     component = fixture.componentInstance;

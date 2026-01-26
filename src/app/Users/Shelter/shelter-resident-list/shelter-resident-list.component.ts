@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
-import { ResidentSubNavComponent } from "../Shared/resident-sub-nav/resident-sub-nav.component";
+import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
+import { ResidentSubNavComponent } from '../Shared/resident-sub-nav/resident-sub-nav.component';
 import { AnimalInfos, EspeceInfos, UtilisateurInfos } from '../../../models/models';
 import { SearchService } from '../../../Shared/search.service';
 import { AuthService } from '../../../auth.service';
@@ -11,86 +11,86 @@ import { ShelterService } from '../../../Shelters/shelter.service';
   selector: 'app-shelter-resident-list',
   imports: [RouterModule, DashboardNavComponent, ResidentSubNavComponent],
   templateUrl: './shelter-resident-list.component.html',
-  styleUrl: './shelter-resident-list.component.css'
+  styleUrl: './shelter-resident-list.component.css',
 })
 export class ShelterResidentListComponent {
-  authService : AuthService = inject(AuthService);
-  user : UtilisateurInfos = this.authService.getUserData();
+  authService: AuthService = inject(AuthService);
+  user: UtilisateurInfos = this.authService.getUserData();
 
   speciesList: EspeceInfos[] = [];
   searchService: SearchService = inject(SearchService);
   shelterService: ShelterService = inject(ShelterService);
 
-  sheltered : AnimalInfos[] | undefined = [];
-  filtered : AnimalInfos[] | undefined = [];
-  filterArray : Array<number> = [];
-  statusFilterArray : Array<string> = [];
+  sheltered: AnimalInfos[] | undefined = [];
+  filtered: AnimalInfos[] | undefined = [];
+  filterArray: number[] = [];
+  statusFilterArray: string[] = [];
 
-  isHidden : boolean = true
+  isHidden = true;
   displayDropdown() {
-    this.isHidden = !this.isHidden
+    this.isHidden = !this.isHidden;
   }
 
   constructor() {
-    this.searchService
-      .getAllSpecies()
-      .then((speciesList: EspeceInfos[]) => {
-        this.speciesList = speciesList;
-      });
+    this.searchService.getAllSpecies().then((speciesList: EspeceInfos[]) => {
+      this.speciesList = speciesList;
+    });
 
-    const shelterId = Number(this.user.refuge?.id)
+    const shelterId = Number(this.user.refuge?.id);
 
     this.shelterService.getShelterById(shelterId).then((shelter) => {
       this.sheltered = shelter?.pensionnaires;
-      this.filtered = shelter?.pensionnaires
+      this.filtered = shelter?.pensionnaires;
     });
   }
 
-  handleSearch(text : string) {
+  handleSearch(text: string) {
     if (!text) {
       this.filtered = this.sheltered;
       return;
     }
-    this.filtered = this.sheltered?.filter((animal) =>
-      animal.nom.toLowerCase().includes(text.toLowerCase()),
-    );
+    this.filtered = this.sheltered?.filter((animal) => animal.nom.toLowerCase().includes(text.toLowerCase()));
   }
 
-  filterStatus(event : any, status : string) {
-    if(event.target.checked) {
-      this.statusFilterArray.push(status)
+  filterStatus(event: Event, status: string) {
+    const statusBox = event.target as HTMLInputElement;
+    if (statusBox.checked) {
+      this.statusFilterArray.push(status);
     } else {
-      this.statusFilterArray = this.statusFilterArray.filter((s) => s !== status)
+      this.statusFilterArray = this.statusFilterArray.filter((s) => s !== status);
     }
 
-    if(this.statusFilterArray.length) {
+    if (this.statusFilterArray.length) {
       this.statusFilterArray.forEach((status) => {
         this.filtered = (this.filtered?.length ? this.filtered : this.sheltered)?.filter((animal) =>
           animal.statut.toLowerCase().includes(status.toLowerCase()),
         );
-      })
+      });
     } else {
       this.filtered = this.sheltered;
     }
   }
 
-  filterSpecies(event: any, id : string) {
-    if(event.target.checked) {
-      this.filterArray.push(Number(id))
+  filterSpecies(event: Event, id: string) {
+    const speciesBox = event.target as HTMLInputElement;
+    if (speciesBox.checked) {
+      this.filterArray.push(Number(id));
     } else {
-      this.filterArray = this.filterArray.filter((speciesId) => speciesId !== Number(id))
+      this.filterArray = this.filterArray.filter((speciesId) => speciesId !== Number(id));
     }
 
-    if(this.filterArray.length) {
+    if (this.filterArray.length) {
       this.filterArray.forEach((species) => {
-        this.filtered = (this.filtered?.length ? this.filtered : this.sheltered)?.filter((animal) => Number(animal.espece.id) === species)
-      })
+        this.filtered = (this.filtered?.length ? this.filtered : this.sheltered)?.filter(
+          (animal) => Number(animal.espece.id) === species,
+        );
+      });
     } else {
-      this.filtered = this.sheltered
+      this.filtered = this.sheltered;
     }
   }
 
   clearStatusFilter() {
-    this.filtered = this.sheltered
+    this.filtered = this.sheltered;
   }
 }

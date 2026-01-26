@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
-import { ResidentSubNavComponent } from "../Shared/resident-sub-nav/resident-sub-nav.component";
+import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
+import { ResidentSubNavComponent } from '../Shared/resident-sub-nav/resident-sub-nav.component';
 import { EspeceInfos, TagInfos, UtilisateurInfos } from '../../../models/models';
 import { SearchService } from '../../../Shared/search.service';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -12,45 +12,41 @@ import { AuthService } from '../../../auth.service';
   selector: 'app-shelter-resident-add-profile',
   imports: [RouterModule, DashboardNavComponent, ResidentSubNavComponent, ReactiveFormsModule],
   templateUrl: './shelter-resident-add-profile.component.html',
-  styleUrl: './shelter-resident-add-profile.component.css'
+  styleUrl: './shelter-resident-add-profile.component.css',
 })
 export class ShelterResidentAddProfileComponent {
   speciesList: EspeceInfos[] = [];
   tagList: TagInfos[] = [];
   searchService: SearchService = inject(SearchService);
   shelterService: UserShelterService = inject(UserShelterService);
-  authService : AuthService = inject(AuthService)
-  animalTagList : Array<number> = []
-  user : UtilisateurInfos = this.authService.getUserData();
-  router : Router = inject(Router)
+  authService: AuthService = inject(AuthService);
+  animalTagList: number[] = [];
+  user: UtilisateurInfos = this.authService.getUserData();
+  router: Router = inject(Router);
 
-  isHidden : boolean = true;
+  isHidden = true;
   displayModal() {
-    this.isHidden = !this.isHidden
+    this.isHidden = !this.isHidden;
   }
 
   constructor() {
-    this.searchService
-      .getAllSpecies()
-      .then((speciesList: EspeceInfos[]) => {
-        this.speciesList = speciesList;
-      });
+    this.searchService.getAllSpecies().then((speciesList: EspeceInfos[]) => {
+      this.speciesList = speciesList;
+    });
 
-    this.updateTagList()
+    this.updateTagList();
   }
 
   updateTagList() {
-    this.searchService
-      .getAllTags()
-      .then((tagList: TagInfos[]) => {
-        this.tagList = tagList;
-      });
+    this.searchService.getAllTags().then((tagList: TagInfos[]) => {
+      this.tagList = tagList;
+    });
   }
 
   tagCreationForm = new FormGroup({
     nom: new FormControl('', [Validators.minLength(3), Validators.required]),
     description: new FormControl('', [Validators.minLength(3), Validators.required]),
-  })
+  });
 
   handleCreateTag() {
     const tagInfos = this.tagCreationForm.value;
@@ -59,11 +55,12 @@ export class ShelterResidentAddProfileComponent {
     this.displayModal();
   }
 
-  addtoTagList(event : any, id : string) {
-    if(event.target.checked) {
-      this.animalTagList.push(Number(id))
+  addtoTagList(event: Event, id: string) {
+    const tag = event.target as HTMLInputElement;
+    if (tag.checked) {
+      this.animalTagList.push(Number(id));
     } else {
-      this.animalTagList = this.animalTagList.filter((element) => element !== Number(id))
+      this.animalTagList = this.animalTagList.filter((element) => element !== Number(id));
     }
   }
 
@@ -76,19 +73,19 @@ export class ShelterResidentAddProfileComponent {
     couleur_animal: new FormControl('', [Validators.minLength(3), Validators.required]),
     description_animal: new FormControl('', [Validators.minLength(3), Validators.required]),
     tags: new FormControl(),
-    association_id: new FormControl('')
-  })
+    association_id: new FormControl(''),
+  });
 
   handleCreateAnimal() {
     const animalInfos = this.animalCreationForm.value;
-    if(this.animalTagList.length > 0) {
+    if (this.animalTagList.length > 0) {
       animalInfos.tags = this.animalTagList;
     } else {
-      animalInfos.tags = []
+      animalInfos.tags = [];
     }
     animalInfos.association_id = this.user.refuge?.id;
     this.shelterService.createAnimal(animalInfos);
     this.animalCreationForm.reset();
-    this.router.navigateByUrl('/association/profil/animaux')
+    this.router.navigateByUrl('/association/profil/animaux');
   }
 }

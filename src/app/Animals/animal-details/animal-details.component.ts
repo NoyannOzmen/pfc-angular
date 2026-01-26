@@ -12,28 +12,28 @@ import { UserFosterService } from '../../Users/Foster/user-foster.service';
   selector: 'app-animal-details',
   imports: [RouterModule, CarouselComponent],
   templateUrl: './animal-details.component.html',
-  styleUrl: './animal-details.component.css'
+  styleUrl: './animal-details.component.css',
 })
 export class AnimalDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   animalService = inject(AnimalService);
   shelterService = inject(ShelterService);
-  authService = inject(AuthService)
-  animal : AnimalInfos | undefined;
-  animalTags : AnimalInfos[] | undefined;
-  isFoster = this.authService.hasRole('foster')
-  fosterService : UserFosterService = inject(UserFosterService)
-  animalId = parseInt(this.route.snapshot.params['animalId'], 10)
-  userMessage : string = '';
+  authService = inject(AuthService);
+  animal: AnimalInfos | undefined;
+  animalTags: AnimalInfos[] | undefined;
+  isFoster = this.authService.hasRole('foster');
+  fosterService: UserFosterService = inject(UserFosterService);
+  animalId = parseInt(this.route.snapshot.params['animalId'], 10);
+  userMessage = '';
 
   constructor() {
     this.animalService.getAnimalById(this.animalId).then((animal) => {
-        this.animal = animal;
+      this.animal = animal;
     });
   }
 
   async makeRequest() {
     const feedback = await this.fosterService.makeRequest(this.animalId);
-    this.userMessage = feedback
+    this.userMessage = feedback;
   }
 }

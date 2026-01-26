@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-resident-sub-nav',
   imports: [RouterModule],
   templateUrl: './resident-sub-nav.component.html',
-  styleUrl: './resident-sub-nav.component.css'
+  styleUrl: './resident-sub-nav.component.css',
 })
-export class ResidentSubNavComponent {
-
-}
+export class ResidentSubNavComponent {}

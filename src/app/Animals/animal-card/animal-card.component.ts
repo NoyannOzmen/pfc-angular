@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-animal-card',
   imports: [RouterModule],
   templateUrl: './animal-card.component.html',
-  styleUrl: './animal-card.component.css'
+  styleUrl: './animal-card.component.css',
 })
 export class AnimalCardComponent {
- animal = input.required<AnimalInfos>();
+  animal = input.required<AnimalInfos>();
 }

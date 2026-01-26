@@ -8,9 +8,8 @@ describe('ShelterDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterDashboardComponent]
-    })
-    .compileComponents();
+      imports: [ShelterDashboardComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterDashboardComponent);
     component = fixture.componentInstance;

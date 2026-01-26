@@ -107,7 +107,6 @@ import { Component } from '@angular/core';
     <option value="974">974 - La Réunion</option>
     <option value="976">976 - Mayotte</option>
   `,
-  styles: ''
+  styles: '',
 })
-export class DptSelectComponent {
-}
+export class DptSelectComponent {}

@@ -9,41 +9,35 @@ import { SearchService } from '../../Shared/search.service';
   selector: 'app-animal-list',
   imports: [AnimalCardComponent, DptSelectComponent],
   templateUrl: './animal-list.component.html',
-  styleUrl: './animal-list.component.css'
+  styleUrl: './animal-list.component.css',
 })
 export class AnimalListComponent {
   animalList: AnimalInfos[] = [];
   animalService: AnimalService = inject(AnimalService);
-  filteredAnimalList : AnimalInfos[] = [];
-  animalTagList : Array<number> = []
+  filteredAnimalList: AnimalInfos[] = [];
+  animalTagList: number[] = [];
   speciesList: EspeceInfos[] = [];
   tagList: TagInfos[] = [];
   searchService: SearchService = inject(SearchService);
 
-  isHidden : boolean = true;
+  isHidden = true;
   toggleFilters() {
-    this.isHidden = !this.isHidden
-  };
+    this.isHidden = !this.isHidden;
+  }
 
   constructor() {
-    this.animalService
-      .getAllAnimals()
-      .then((animalList: AnimalInfos[]) => {
-        this.animalList = animalList;
-        this.filteredAnimalList = animalList;
-      });
+    this.animalService.getAllAnimals().then((animalList: AnimalInfos[]) => {
+      this.animalList = animalList;
+      this.filteredAnimalList = animalList;
+    });
 
-    this.searchService
-      .getAllTags()
-      .then((tagList: TagInfos[]) => {
-        this.tagList = tagList;
-      });
+    this.searchService.getAllTags().then((tagList: TagInfos[]) => {
+      this.tagList = tagList;
+    });
 
-    this.searchService
-      .getAllSpecies()
-      .then((speciesList: EspeceInfos[]) => {
-        this.speciesList = speciesList;
-      });
+    this.searchService.getAllSpecies().then((speciesList: EspeceInfos[]) => {
+      this.speciesList = speciesList;
+    });
   }
 
   filterResultsSmall(especeDropdownSmall: string) {
@@ -56,59 +50,61 @@ export class AnimalListComponent {
     );
   }
 
-  addtoTagList(event : any, id : string) {
-    if(event.target.checked) {
-      this.animalTagList.push(Number(id))
+  addtoTagList(event: Event, id: string) {
+    const tag = event.target as HTMLInputElement;
+    if (tag.checked) {
+      this.animalTagList.push(Number(id));
     } else {
-      this.animalTagList = this.animalTagList.filter((tagId) => tagId !== Number(id))
+      this.animalTagList = this.animalTagList.filter((tagId) => tagId !== Number(id));
     }
   }
 
-  filterResultsFull(especeDropdownFull: string, sexe : string, minAge : number, maxAge : number, dptSelect : string) {
+  filterResultsFull(especeDropdownFull: string, sexe: string, minAge: number, maxAge: number, dptSelect: string) {
     if (!especeDropdownFull && !dptSelect && !minAge && !maxAge && !sexe && this.animalTagList.length < 0) {
       this.filteredAnimalList = this.animalList;
       return;
     }
-    if(especeDropdownFull) {
+    if (especeDropdownFull) {
       this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
-        animal.espece.nom.toLowerCase().includes(especeDropdownFull.toLowerCase())
-    )} else { this.filteredAnimalList = this.filteredAnimalList }
+        animal.espece.nom.toLowerCase().includes(especeDropdownFull.toLowerCase()),
+      );
+    }
 
-    if(sexe) {
+    if (sexe) {
+      this.filteredAnimalList = this.filteredAnimalList.filter(
+        (animal) => animal.sexe.toLowerCase() === sexe.toLowerCase(),
+      );
+    }
+
+    if (dptSelect) {
       this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
-        animal.sexe.toLowerCase() === sexe.toLowerCase()
-    )} else { this.filteredAnimalList = this.filteredAnimalList }
+        animal.refuge.code_postal.startsWith(dptSelect),
+      );
+    }
 
-    if(dptSelect) {
-      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
-        animal.refuge.code_postal.startsWith(dptSelect)
-    )} else { this.filteredAnimalList = this.filteredAnimalList }
+    if (minAge) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) => animal.age > minAge);
+    }
 
-    if(minAge) {
-      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
-        animal.age > minAge
-    )} else { this.filteredAnimalList = this.filteredAnimalList }
+    if (maxAge) {
+      this.filteredAnimalList = this.filteredAnimalList.filter((animal) => animal.age < maxAge);
+    }
 
-    if(maxAge) {
-      this.filteredAnimalList = this.filteredAnimalList.filter((animal) =>
-        animal.age < maxAge
-    )} else { this.filteredAnimalList = this.filteredAnimalList }
-
-    if(this.animalTagList.length > 0) {
-      let tagFilteringArray : Array<AnimalInfos> = [];
+    if (this.animalTagList.length > 0) {
+      let tagFilteringArray: AnimalInfos[] = [];
 
       this.filteredAnimalList.forEach((animal) =>
         this.animalTagList.forEach((identification) => {
-          const found = animal.tags.some(tag => Number(tag.id) === identification);
-          if(!found && !tagFilteringArray.includes(animal)) {
-            tagFilteringArray.push(animal)
+          const found = animal.tags.some((tag) => Number(tag.id) === identification);
+          if (!found && !tagFilteringArray.includes(animal)) {
+            tagFilteringArray.push(animal);
           }
-          if(found && tagFilteringArray.includes(animal)) {
-             tagFilteringArray = tagFilteringArray.filter((a) => a !== animal)
-            }
-        })
-      )
+          if (found && tagFilteringArray.includes(animal)) {
+            tagFilteringArray = tagFilteringArray.filter((a) => a !== animal);
+          }
+        }),
+      );
       this.filteredAnimalList = tagFilteringArray;
-    } else { this.filteredAnimalList = this.filteredAnimalList}
+    }
   }
 }

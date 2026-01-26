@@ -8,9 +8,8 @@ describe('FosterRequestComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FosterRequestComponent]
-    })
-    .compileComponents();
+      imports: [FosterRequestComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FosterRequestComponent);
     component = fixture.componentInstance;

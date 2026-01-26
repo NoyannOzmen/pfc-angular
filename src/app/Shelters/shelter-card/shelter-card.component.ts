@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
   selector: 'app-shelter-card',
   imports: [RouterModule],
   templateUrl: './shelter-card.component.html',
-  styleUrl: './shelter-card.component.css'
+  styleUrl: './shelter-card.component.css',
 })
 export class ShelterCardComponent {
-   shelter = input.required<AssociationInfos>();
+  shelter = input.required<AssociationInfos>();
 }

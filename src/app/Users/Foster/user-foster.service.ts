@@ -3,67 +3,67 @@ import { environment } from '../../../environments/environment';
 import { DemandeInfos, FamilleInfos } from '../../models/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserFosterService {
   url = environment.apiUrl;
 
-  async getProfileInfos(id: number) : Promise<FamilleInfos> {
-    const token = sessionStorage.getItem("token")
+  async getProfileInfos(id: number): Promise<FamilleInfos> {
+    const token = sessionStorage.getItem('token');
     const famille = await fetch(`${this.url}/famille/profil/${id}`, {
       headers: {
-        "Content-type" : "application/json",
-        "Authorization": `Bearer ${token}`
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-    }).then(res => res.json());
+    }).then((res) => res.json());
     return famille;
   }
 
-  async getCurrentRequests(id : number) : Promise<DemandeInfos[]> {
-    const token = sessionStorage.getItem("token")
+  async getCurrentRequests(): Promise<DemandeInfos[]> {
+    const token = sessionStorage.getItem('token');
     const currentRequests = await fetch(`${this.url}/demandes`, {
       headers: {
-        "Content-type" : "application/json",
-        "Authorization": `Bearer ${token}`
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-    }).then(res => res.json());
+    }).then((res) => res.json());
     return (await currentRequests) ?? [];
   }
 
-  async makeRequest(id : number) : Promise<string> {
-    const token = sessionStorage.getItem("token");
+  async makeRequest(id: number): Promise<string> {
+    const token = sessionStorage.getItem('token');
     const data = await fetch(`${this.url}/animaux/${id}/faire-une-demande`, {
-      method : "POST",
-      headers : {
-        "Content-type" : "application/json",
-        "Authorization" : `Bearer ${token}`
-      }
-    }).then(res => res.json());
-    return (await data.message) ?? {}
-  }
-
-  async updateFosterInfos(updateInfos : Object) : Promise<FamilleInfos> {
-    const token = sessionStorage.getItem("token");
-    const updatedFoster = await fetch(`${this.url}/famille/profil`, {
-      method : "POST",
-      headers : {
-        "Content-type" : "application/json",
-        "Authorization" : `Bearer ${token}`
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body : JSON.stringify(updateInfos)
-    }).then(res => res.json());
-    return (await updatedFoster) ?? {}
+    }).then((res) => res.json());
+    return (await data.message) ?? {};
   }
 
-  async deleteFosterAccount() : Promise<string> {
-    const token = sessionStorage.getItem("token");
+  async updateFosterInfos(updateInfos: object): Promise<FamilleInfos> {
+    const token = sessionStorage.getItem('token');
+    const updatedFoster = await fetch(`${this.url}/famille/profil`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updateInfos),
+    }).then((res) => res.json());
+    return (await updatedFoster) ?? {};
+  }
+
+  async deleteFosterAccount(): Promise<string> {
+    const token = sessionStorage.getItem('token');
     const data = await fetch(`${this.url}/famille/profil/delete`, {
-      method : "POST",
-      headers : {
-        "Content-type" : "application/json",
-        "Authorization" : `Bearer ${token}`
-      }
-    }).then(res => res.json());
-    return (await data.message) ?? {}
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => res.json());
+    return (await data.message) ?? {};
   }
 }

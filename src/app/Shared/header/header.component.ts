@@ -6,20 +6,20 @@ import { HeaderNavigationComponent } from '../header-navigation/header-navigatio
   selector: 'app-header',
   imports: [RouterModule, HeaderNavigationComponent],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   mobileMenu() {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector("#nav-links");
-    hamburger?.classList.toggle("active");
-    navMenu?.classList.toggle("active");
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('#nav-links');
+    hamburger?.classList.toggle('active');
+    navMenu?.classList.toggle('active');
   }
 
   closeMenu() {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector("#nav-links");
-    hamburger?.classList.remove("active");
-    navMenu?.classList.remove("active");
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('#nav-links');
+    hamburger?.classList.remove('active');
+    navMenu?.classList.remove('active');
   }
 }

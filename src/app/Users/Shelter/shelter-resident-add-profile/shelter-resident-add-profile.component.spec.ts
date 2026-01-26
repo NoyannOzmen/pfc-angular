@@ -8,9 +8,8 @@ describe('ShelterResidentAddProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterResidentAddProfileComponent]
-    })
-    .compileComponents();
+      imports: [ShelterResidentAddProfileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterResidentAddProfileComponent);
     component = fixture.componentInstance;

@@ -38,31 +38,81 @@ export const routes: Routes = [
   { path: 'faq', component: FaqComponent, title: 'Foire Aux Questions' },
   { path: 'infos-legales', component: LegalinfoComponent, title: 'Informations légales' },
   { path: 'rgpd', component: PrivacyComponent, title: 'Politique de protection des données' },
-  { path: 'devenir-famille-d-accueil', component: BecomeFosterComponent, title: 'Devenir famille d\'accueil' },
+  { path: 'devenir-famille-d-accueil', component: BecomeFosterComponent, title: "Devenir famille d'accueil" },
   { path: 'plan', component: SitemapComponent, title: 'Plan du site' },
   /* shelter routes */
   { path: 'refuges/:shelterId', component: ShelterDetailsComponent, title: 'Informations sur notre partenaire' },
   { path: 'refuges', component: ShelterListComponent, title: 'Nos refuges et associations partenaires' },
   /* animal routes */
-  { path: 'animaux/:animalId', component: AnimalDetailsComponent, title: 'Informations sur l\'animal' },
+  { path: 'animaux/:animalId', component: AnimalDetailsComponent, title: "Informations sur l'animal" },
   { path: 'animaux', component: AnimalListComponent, title: 'Nos animaux' },
   /* session routes */
   { path: 'connexion', component: LoginComponent, title: 'Se connecter' },
   { path: 'inscription', component: RegisterComponent, title: 'Créer un compte' },
   /* foster routes */
-  { path: 'famille/inscription', component: FosterRegisterComponent, title: 'Créer un compte famille d\'accueil' },
-  { path: 'famille/profil', component: FosterProfileComponent, title: 'Votre profil', canActivate: [authGuard, fosterGuard]},
-  { path: 'famille/profil/demandes', component: FosterRequestComponent, title: 'Vos demandes en cours', canActivate: [authGuard, fosterGuard]},
+  { path: 'famille/inscription', component: FosterRegisterComponent, title: "Créer un compte famille d'accueil" },
+  {
+    path: 'famille/profil',
+    component: FosterProfileComponent,
+    title: 'Votre profil',
+    canActivate: [authGuard, fosterGuard],
+  },
+  {
+    path: 'famille/profil/demandes',
+    component: FosterRequestComponent,
+    title: 'Vos demandes en cours',
+    canActivate: [authGuard, fosterGuard],
+  },
   /* logged shelter routes */
   { path: 'association/inscription', component: ShelterRegisterComponent, title: 'Créer un compte association' },
-  { path: 'association/profil', component: ShelterDashboardComponent, title: 'Votre tableau de bord', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/animaux/nouveau-profil', component: ShelterResidentAddProfileComponent, title: 'Créer un profil pour un animal', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/animaux/suivi', component: ShelterFosteredListComponent, title: 'Vos animaux hébergés', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/animaux/:animalId', component: ShelterResidentDetailsComponent, title: 'Informations sur l\'animal', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/animaux', component: ShelterResidentListComponent, title: 'Vos animaux', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/demandes/:demandeId', component: ShelterRequestDetailsComponent, title: 'Informations sur la demande d\'accueil', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/demandes', component: ShelterRequestListComponent, title: 'Vos demandes d\'accueil', canActivate: [authGuard, shelterGuard]},
-  { path: 'association/profil/logo', component: ShelterUploadComponent, title: 'Modifier votre logo', canActivate: [authGuard, shelterGuard]},
+  {
+    path: 'association/profil',
+    component: ShelterDashboardComponent,
+    title: 'Votre tableau de bord',
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/animaux/nouveau-profil',
+    component: ShelterResidentAddProfileComponent,
+    title: 'Créer un profil pour un animal',
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/animaux/suivi',
+    component: ShelterFosteredListComponent,
+    title: 'Vos animaux hébergés',
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/animaux/:animalId',
+    component: ShelterResidentDetailsComponent,
+    title: "Informations sur l'animal",
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/animaux',
+    component: ShelterResidentListComponent,
+    title: 'Vos animaux',
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/demandes/:demandeId',
+    component: ShelterRequestDetailsComponent,
+    title: "Informations sur la demande d'accueil",
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/demandes',
+    component: ShelterRequestListComponent,
+    title: "Vos demandes d'accueil",
+    canActivate: [authGuard, shelterGuard],
+  },
+  {
+    path: 'association/profil/logo',
+    component: ShelterUploadComponent,
+    title: 'Modifier votre logo',
+    canActivate: [authGuard, shelterGuard],
+  },
   /* catch-all error route */
-  { path: '**', component: NotFoundComponent, title: 'Page non trouvée' }
+  { path: '**', component: NotFoundComponent, title: 'Page non trouvée' },
 ];

@@ -8,27 +8,27 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  authService : AuthService = inject(AuthService)
-  user: UtilisateurInfos[] = []
-  router : Router = inject(Router)
-  userMessage : string = '';
+  authService: AuthService = inject(AuthService);
+  user: UtilisateurInfos[] = [];
+  router: Router = inject(Router);
+  userMessage = '';
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     mot_de_passe: new FormControl('', [Validators.minLength(8), Validators.required]),
-  })
+  });
 
   async onSubmit() {
     const credentials = this.loginForm.value;
-    const data = await this.authService.logIn(credentials)
-    if(data.length) {
-      this.userMessage = data
+    const data = await this.authService.logIn(credentials);
+    if (data.length) {
+      this.userMessage = data;
     } else {
       this.loginForm.reset();
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/');
     }
-  };
+  }
 }

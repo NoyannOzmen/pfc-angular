@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { MediaInfos, UtilisateurInfos } from './models/models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   url = environment.apiUrl;
 
-  async logIn(credentials : any): Promise<string> {
+  async logIn(credentials: object): Promise<string> {
     const data = await fetch(`${this.url}/connexion`, {
       method: 'POST',
-      headers: { "Content-type" : "application/json" },
-      body: JSON.stringify(credentials)
-    }).then(res => res.json());
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(credentials),
+    }).then((res) => res.json());
 
     const user = data.user;
 
     if (user) {
-      sessionStorage.setItem("token", data.access_token);
+      sessionStorage.setItem('token', data.access_token);
       this.saveUserData(user);
       if (user.accueillant) {
-        sessionStorage.setItem("role", "foster")
+        sessionStorage.setItem('role', 'foster');
       }
       if (user.refuge) {
-       sessionStorage.setItem("role", "shelter")
-/*        user.images_association.forEach((image : MediaInfos)  => {
-        image.url = environment.apiUrl + image.url;
-       }); */
-
+        sessionStorage.setItem('role', 'shelter');
       }
     }
     return (await data.message) ?? {};
@@ -39,29 +34,29 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if (sessionStorage.getItem("token") != null) {
+    if (sessionStorage.getItem('token') != null) {
       return true;
     }
     return false;
   }
 
-  hasRole(role : string) : boolean {
-    if (sessionStorage.getItem("role") === role ) {
+  hasRole(role: string): boolean {
+    if (sessionStorage.getItem('role') === role) {
       return true;
     }
     return false;
   }
 
-  saveUserData(userResponse: any) {
-    let users = JSON.stringify(userResponse);
-    let encryptedData = this.encryptData(users);
+  saveUserData(userResponse: object) {
+    const users = JSON.stringify(userResponse);
+    const encryptedData = this.encryptData(users);
     sessionStorage.setItem('user', encryptedData);
   }
 
   getUserData() {
-    let encryptedData = sessionStorage.getItem('user');
+    const encryptedData = sessionStorage.getItem('user');
     if (encryptedData) {
-      let decryptedData = this.decryptData(encryptedData);
+      const decryptedData = this.decryptData(encryptedData);
       return JSON.parse(decryptedData);
     }
     return null;

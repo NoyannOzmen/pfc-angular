@@ -13,7 +13,7 @@
           <div class=" flex gap-x-1.5 text-center h-5">
             <label class="hidden" for="search-bar">Recherche</label>
             <input (keyup)="handleSearch(textfilter.value)" id="search-bar" name="search-bar" class="bg-fond rounded-full block pl-2 md:w-32 lg:w-full shrink-0" type="text" placeholder="Rechercher" #textfilter/>
-            <span (click)="displayDropdown()" id="search-dropdown-button" role="button" class="material-symbols-outlined bg-fond rounded-full">
+            <span tabindex="-1" (click)="displayDropdown()" id="search-dropdown-button" role="button" class="material-symbols-outlined bg-fond rounded-full">
               arrow_drop_down
               </span>
           </div>

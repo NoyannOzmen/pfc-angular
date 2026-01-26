@@ -1,13 +1,13 @@
 export interface MediaInfos {
   id: string;
   url: string;
-  ordre: string
+  ordre: string;
 }
 
 export interface TagInfos {
   id: string;
   nom: string;
-  description: string
+  description: string;
 }
 
 export interface UtilisateurInfos {
@@ -16,7 +16,7 @@ export interface UtilisateurInfos {
   mot_de_passe: string;
   role: string;
   accueillant: FamilleInfos | null;
-  refuge : AssociationInfos | null;
+  refuge: AssociationInfos | null;
 }
 
 export interface FamilleInfos {
@@ -30,7 +30,7 @@ export interface FamilleInfos {
   pays: string;
   hebergement: string;
   terrain: string | null;
-  identifiant_famille : UtilisateurInfos;
+  identifiant_famille: UtilisateurInfos;
 }
 
 export interface EspeceInfos {
@@ -52,7 +52,7 @@ export interface AssociationInfos {
   description: string | null;
   images_association: MediaInfos[];
   identifiant_association: UtilisateurInfos;
-  pensionnaires : AnimalInfos[];
+  pensionnaires: AnimalInfos[];
 }
 
 export interface AnimalInfos {
@@ -70,7 +70,7 @@ export interface AnimalInfos {
   refuge: AssociationInfos;
   accueillant: FamilleInfos | null;
   demandes: DemandeInfos[];
-  tags: TagInfos[]
+  tags: TagInfos[];
 }
 
 export interface DemandeInfos {
@@ -78,14 +78,13 @@ export interface DemandeInfos {
   famille: FamilleInfos;
   animal: AnimalInfos;
   statut_demande: string;
-  date_debut : string;
-  date_fin: string
+  date_debut: string;
+  date_fin: string;
 }
 
 export interface LoggedUserInfos {
   id: string;
   email: string;
   accueillant: FamilleInfos | null;
-  refuge : AssociationInfos | null;
+  refuge: AssociationInfos | null;
 }
-

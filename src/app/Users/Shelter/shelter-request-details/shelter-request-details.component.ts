@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { DashboardNavComponent } from "../Shared/dashboard-nav/dashboard-nav.component";
+import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { UserShelterService } from '../user-shelter.service';
 import { DemandeInfos } from '../../../models/models';
 
@@ -8,14 +8,14 @@ import { DemandeInfos } from '../../../models/models';
   selector: 'app-shelter-request-details',
   imports: [RouterModule, DashboardNavComponent],
   templateUrl: './shelter-request-details.component.html',
-  styleUrl: './shelter-request-details.component.css'
+  styleUrl: './shelter-request-details.component.css',
 })
 export class ShelterRequestDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  requestId = parseInt(this.route.snapshot.params['demandeId'], 10)
-  shelterService : UserShelterService = inject(UserShelterService)
-  demande : DemandeInfos | undefined;
-  router : Router = inject(Router);
+  requestId = parseInt(this.route.snapshot.params['demandeId'], 10);
+  shelterService: UserShelterService = inject(UserShelterService);
+  demande: DemandeInfos | undefined;
+  router: Router = inject(Router);
 
   constructor() {
     this.shelterService.getRequestById(this.requestId).then((demande) => {

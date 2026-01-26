@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-dashboard-sub-nav',
   imports: [RouterModule],
   templateUrl: './dashboard-sub-nav.component.html',
-  styleUrl: './dashboard-sub-nav.component.css'
+  styleUrl: './dashboard-sub-nav.component.css',
 })
-export class DashboardSubNavComponent {
-
-}
+export class DashboardSubNavComponent {}

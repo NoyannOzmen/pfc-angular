@@ -4,8 +4,8 @@ import { CanActivateChildFn } from '@angular/router';
 import { fosterGuard } from './foster.guard';
 
 describe('fosterGuard', () => {
-  const executeGuard: CanActivateChildFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => fosterGuard(...guardParameters));
+  const executeGuard: CanActivateChildFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => fosterGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

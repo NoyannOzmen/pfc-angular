@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
   selector: 'app-sitemap',
   imports: [RouterModule],
   templateUrl: './sitemap.component.html',
-  styleUrl: './sitemap.component.css'
+  styleUrl: './sitemap.component.css',
 })
-export class SitemapComponent {
-
-}
+export class SitemapComponent {}

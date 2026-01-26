@@ -102,7 +102,7 @@
     <div class="self-center bg-zoning p-6 rounded-lg">
       <div class="flex justify-between">
         <h3 class="font-grands text-lg font-extrabold mb-4">Ajouter un tag</h3>
-        <span (click)="displayModal()" class="cancel material-symbols-outlined text-texte cursor-pointer">
+        <span tabindex="0" (click)="displayModal()" (keydown.enter)="displayModal()" class="cancel material-symbols-outlined text-texte cursor-pointer">
           close
         </span>
       </div>

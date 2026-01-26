@@ -7,9 +7,9 @@ import { AuthService } from '../../auth.service';
   selector: 'app-header-navigation',
   imports: [HeaderLoggedComponent, HeaderLoginComponent],
   templateUrl: './header-navigation.component.html',
-  styleUrl: './header-navigation.component.css'
+  styleUrl: './header-navigation.component.css',
 })
 export class HeaderNavigationComponent {
-  authService: AuthService = inject(AuthService)
-  isAuthenticated = this.authService.isAuthenticated
+  authService: AuthService = inject(AuthService);
+  isAuthenticated = this.authService.isAuthenticated;
 }

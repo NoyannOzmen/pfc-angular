@@ -6,13 +6,13 @@ import { AnimalInfos } from '../../../models/models';
   selector: 'app-shelter-fostered-table',
   imports: [RouterModule],
   templateUrl: './shelter-fostered-table.component.html',
-  styleUrl: './shelter-fostered-table.component.css'
+  styleUrl: './shelter-fostered-table.component.css',
 })
-export class ShelterFosteredTableComponent  {
-  animal = input.required<AnimalInfos>()
+export class ShelterFosteredTableComponent {
+  animal = input.required<AnimalInfos>();
 
-  isHidden : boolean = true;
+  isHidden = true;
   toggle() {
-    this.isHidden = !this.isHidden
-  };
+    this.isHidden = !this.isHidden;
+  }
 }

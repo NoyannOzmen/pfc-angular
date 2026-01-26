@@ -16,7 +16,7 @@
             <form class="flex flex-col content-center md:w-[60%] justify-center text-texte" [formGroup]="ShelterProfileForm">
 
               <fieldset class="shrink font-body rounded-lg shadow my-2 py-5">
-                <legend class="text-center">Mon organisme&nbsp;<span tabindex="0" class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
+                <legend class="text-center">Mon organisme&nbsp;<span tabindex="0" class="material-symbols-outlined" (click)="[validate.classList.toggle('hidden'), allowEdit()]" (keydown.enter)="[validate.classList.toggle('hidden'), allowEdit()]">edit</span></legend>
 
                 <div class="mx-auto p-2">
                   <label class="text-center" for="nom">Nom</label>
@@ -88,7 +88,7 @@
         <div class="self-center bg-zoning p-6 rounded-lg">
           <div class="flex justify-between">
             <h3 class="font-grands text-lg font-extrabold mb-4">Supprimer votre compte</h3>
-            <span (click)="displayModal()" class="cancel material-symbols-outlined text-texte cursor-pointer">
+            <span tabindex="0" (click)="displayModal()" (keydown.enter)="displayModal()" class="cancel material-symbols-outlined text-texte cursor-pointer">
               close
             </span>
           </div>

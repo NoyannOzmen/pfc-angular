@@ -8,9 +8,8 @@ describe('ShelterUploadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterUploadComponent]
-    })
-    .compileComponents();
+      imports: [ShelterUploadComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterUploadComponent);
     component = fixture.componentInstance;

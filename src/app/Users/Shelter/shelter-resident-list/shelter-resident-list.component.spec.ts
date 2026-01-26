@@ -8,9 +8,8 @@ describe('ShelterResidentListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShelterResidentListComponent]
-    })
-    .compileComponents();
+      imports: [ShelterResidentListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShelterResidentListComponent);
     component = fixture.componentInstance;

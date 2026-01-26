@@ -11,7 +11,7 @@ import { FooterComponent } from './Shared/footer/footer.component';
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   `,
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'pfc-angular';

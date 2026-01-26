@@ -9,89 +9,82 @@ import { SearchService } from '../../Shared/search.service';
   selector: 'app-shelter-list',
   imports: [ShelterCardComponent, DptSelectComponent],
   templateUrl: './shelter-list.component.html',
-  styleUrl: './shelter-list.component.css'
+  styleUrl: './shelter-list.component.css',
 })
 export class ShelterListComponent {
   shelterList: AssociationInfos[] = [];
   shelterService: ShelterService = inject(ShelterService);
   filteredShelterList: AssociationInfos[] = [];
-  animalSpeciesList : Array<Number> = [];
+  animalSpeciesList: number[] = [];
   speciesList: EspeceInfos[] = [];
   searchService: SearchService = inject(SearchService);
 
-  isHidden : boolean = true;
+  isHidden = true;
 
   toggleFilters() {
-    this.isHidden = !this.isHidden
-  };
-
-  constructor() {
-    this.shelterService
-      .getAllShelters()
-      .then((shelterList: AssociationInfos[]) => {
-        this.shelterList = shelterList;
-        this.filteredShelterList = shelterList;
-      });
-
-    this.searchService
-      .getAllSpecies()
-      .then((speciesList: EspeceInfos[]) => {
-        this.speciesList = speciesList;
-      });
+    this.isHidden = !this.isHidden;
   }
 
+  constructor() {
+    this.shelterService.getAllShelters().then((shelterList: AssociationInfos[]) => {
+      this.shelterList = shelterList;
+      this.filteredShelterList = shelterList;
+    });
+
+    this.searchService.getAllSpecies().then((speciesList: EspeceInfos[]) => {
+      this.speciesList = speciesList;
+    });
+  }
 
   filterResultsSmall(dptSmall: string) {
     if (!dptSmall) {
       this.filteredShelterList = this.shelterList;
       return;
     }
-    this.filteredShelterList = this.filteredShelterList.filter((shelter) =>
-        shelter.code_postal.startsWith(dptSmall),
-    )
+    this.filteredShelterList = this.filteredShelterList.filter((shelter) => shelter.code_postal.startsWith(dptSmall));
   }
 
-  addtoSpeciesList(event : any, id : string) {
-    if(event.target.checked) {
-      this.animalSpeciesList.push(Number(id))
+  addtoSpeciesList(event: Event, id: string) {
+    const species = event.target as HTMLInputElement;
+    if (species.checked) {
+      this.animalSpeciesList.push(Number(id));
     } else {
-      this.animalSpeciesList = this.animalSpeciesList.filter((element) => element !== Number(id))
+      this.animalSpeciesList = this.animalSpeciesList.filter((element) => element !== Number(id));
     }
   }
 
-  filterResultsFull(name : string, dptFull: string ) {
+  filterResultsFull(name: string, dptFull: string) {
     this.filteredShelterList = this.shelterList;
 
     if (!dptFull && !name && this.animalSpeciesList.length < 0) {
       this.filteredShelterList = this.shelterList;
       return;
     }
-    if(dptFull) {
-      this.filteredShelterList = this.filteredShelterList.filter((shelter) =>
-        shelter.code_postal.startsWith(dptFull)
-    )} else { this.filteredShelterList = this.filteredShelterList }
+    if (dptFull) {
+      this.filteredShelterList = this.filteredShelterList.filter((shelter) => shelter.code_postal.startsWith(dptFull));
+    }
 
-    if(name) {
+    if (name) {
       this.filteredShelterList = this.filteredShelterList.filter((shelter) =>
-        shelter.nom.toLowerCase().includes(name.toLowerCase())
-    )} else { this.filteredShelterList = this.filteredShelterList }
+        shelter.nom.toLowerCase().includes(name.toLowerCase()),
+      );
+    }
 
-    if(this.animalSpeciesList.length > 0) {
-      let speciesFilteringArray : Array<AssociationInfos> = [];
+    if (this.animalSpeciesList.length > 0) {
+      let speciesFilteringArray: AssociationInfos[] = [];
 
       this.filteredShelterList.forEach((shelter) => {
         this.animalSpeciesList.forEach((identification) => {
-          const found = shelter.pensionnaires.find((animal) =>
-            Number(animal.espece.id) === identification );
-          if(found && !speciesFilteringArray.includes(shelter)) {
-            speciesFilteringArray.push(shelter)
+          const found = shelter.pensionnaires.find((animal) => Number(animal.espece.id) === identification);
+          if (found && !speciesFilteringArray.includes(shelter)) {
+            speciesFilteringArray.push(shelter);
           }
-          if(!found && speciesFilteringArray.includes(shelter)) {
-            speciesFilteringArray = speciesFilteringArray.filter((a) => a !== shelter)
+          if (!found && speciesFilteringArray.includes(shelter)) {
+            speciesFilteringArray = speciesFilteringArray.filter((a) => a !== shelter);
           }
-        })
-      })
+        });
+      });
       this.filteredShelterList = speciesFilteringArray;
-    } else { this.filteredShelterList = this.filteredShelterList}
+    }
   }
 }

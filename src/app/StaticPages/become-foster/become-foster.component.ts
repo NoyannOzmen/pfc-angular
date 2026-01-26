@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-become-foster',
   imports: [],
   templateUrl: './become-foster.component.html',
-  styleUrl: './become-foster.component.css'
+  styleUrl: './become-foster.component.css',
 })
-export class BecomeFosterComponent {
-
-}
+export class BecomeFosterComponent {}

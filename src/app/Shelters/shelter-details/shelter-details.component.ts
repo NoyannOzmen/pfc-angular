@@ -8,17 +8,17 @@ import { CarouselComponent } from '../../Shared/carousel/carousel.component';
   selector: 'app-shelter-details',
   imports: [RouterModule, CarouselComponent],
   templateUrl: './shelter-details.component.html',
-  styleUrl: './shelter-details.component.css'
+  styleUrl: './shelter-details.component.css',
 })
 export class ShelterDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   shelterService = inject(ShelterService);
-  shelter : AssociationInfos | undefined;
+  shelter: AssociationInfos | undefined;
 
   constructor() {
     const shelterId = parseInt(this.route.snapshot.params['shelterId'], 10);
     this.shelterService.getShelterById(shelterId).then((shelter) => {
       this.shelter = shelter;
-    })
+    });
   }
 }
