@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AnimalInfos } from '../../../models/models';
 
@@ -6,6 +6,7 @@ import { AnimalInfos } from '../../../models/models';
   selector: 'app-shelter-fostered-table',
   imports: [RouterModule],
   templateUrl: './shelter-fostered-table.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-fostered-table.component.css',
 })
 export class ShelterFosteredTableComponent {

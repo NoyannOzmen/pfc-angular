@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimalService } from '../animal.service';
 import { AnimalInfos } from '../../models/models';
@@ -12,6 +12,7 @@ import { UserFosterService } from '../../Users/Foster/user-foster.service';
   selector: 'app-animal-details',
   imports: [RouterModule, CarouselComponent],
   templateUrl: './animal-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './animal-details.component.css',
 })
 export class AnimalDetailsComponent {

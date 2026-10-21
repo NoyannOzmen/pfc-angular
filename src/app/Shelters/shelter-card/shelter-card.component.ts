@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { AssociationInfos } from '../../models/models';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-shelter-card',
   imports: [RouterModule],
   templateUrl: './shelter-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-card.component.css',
 })
 export class ShelterCardComponent {

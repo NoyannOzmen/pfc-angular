@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { AnimalService } from '../animal.service';
 import { AnimalCardComponent } from '../animal-card/animal-card.component';
 import { DptSelectComponent } from '../../Shared/dpt-select/dpt-select.component';
@@ -9,6 +9,7 @@ import { SearchService } from '../../Shared/search.service';
   selector: 'app-animal-list',
   imports: [AnimalCardComponent, DptSelectComponent],
   templateUrl: './animal-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './animal-list.component.css',
 })
 export class AnimalListComponent {

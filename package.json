@@ -11,13 +11,13 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^21.2.24",
-    "@angular/compiler": "^21.2.24",
-    "@angular/core": "^21.2.24",
-    "@angular/forms": "^21.2.24",
-    "@angular/platform-browser": "^21.2.24",
-    "@angular/platform-browser-dynamic": "^21.2.24",
-    "@angular/router": "^21.2.24",
+    "@angular/common": "^22.2.3",
+    "@angular/compiler": "^22.2.3",
+    "@angular/core": "^22.2.3",
+    "@angular/forms": "^22.2.3",
+    "@angular/platform-browser": "^22.2.3",
+    "@angular/platform-browser-dynamic": "^22.2.3",
+    "@angular/router": "^22.2.3",
     "@tailwindcss/postcss": "^4.1.16",
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
@@ -26,15 +26,16 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.24",
-    "@angular/cli": "^21.2.24",
-    "@angular/compiler-cli": "^21.2.24",
+    "@angular/build": "^22.2.3",
+    "@angular/cli": "^22.2.3",
+    "@angular/compiler-cli": "^22.2.3",
     "@types/jasmine": "~5.1.0",
     "baseline-browser-mapping": "^2.9.14",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "hono": ">=4.11.10",
+    "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -45,6 +46,11 @@
     "prettier": "^3.8.1",
     "prettier-eslint": "^1.0.1",
     "tar": ">=7.5.8",
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.3"
+  },
+  "overrides": {
+    "@angular/build": {
+      "vite": ">=8.3.3"
+    }
   }
 }

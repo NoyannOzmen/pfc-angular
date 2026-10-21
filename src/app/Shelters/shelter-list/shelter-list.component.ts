@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ShelterService } from '../shelter.service';
 import { ShelterCardComponent } from '../shelter-card/shelter-card.component';
 import { DptSelectComponent } from '../../Shared/dpt-select/dpt-select.component';
@@ -9,6 +9,7 @@ import { SearchService } from '../../Shared/search.service';
   selector: 'app-shelter-list',
   imports: [ShelterCardComponent, DptSelectComponent],
   templateUrl: './shelter-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-list.component.css',
 })
 export class ShelterListComponent {

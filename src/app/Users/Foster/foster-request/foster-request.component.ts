@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth.service';
 import { DemandeInfos, UtilisateurInfos } from '../../../models/models';
@@ -9,6 +9,7 @@ import { FosterRequestTableComponent } from '../foster-request-table/foster-requ
   selector: 'app-foster-request',
   imports: [RouterModule, FosterRequestTableComponent],
   templateUrl: './foster-request.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './foster-request.component.css',
 })
 export class FosterRequestComponent {

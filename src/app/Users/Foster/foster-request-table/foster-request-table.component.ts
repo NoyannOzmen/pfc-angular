@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { DemandeInfos } from '../../../models/models';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-foster-request-table',
   imports: [RouterModule],
   templateUrl: './foster-request-table.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './foster-request-table.component.css',
 })
 export class FosterRequestTableComponent {

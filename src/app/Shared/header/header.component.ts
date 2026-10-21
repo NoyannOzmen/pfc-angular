@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderNavigationComponent } from '../header-navigation/header-navigation.component';
 
@@ -6,6 +6,7 @@ import { HeaderNavigationComponent } from '../header-navigation/header-navigatio
   selector: 'app-header',
   imports: [RouterModule, HeaderNavigationComponent],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {

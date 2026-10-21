@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AnimalInfos, DemandeInfos } from '../../../models/models';
 import { UserShelterService } from '../user-shelter.service';
@@ -7,6 +7,7 @@ import { UserShelterService } from '../user-shelter.service';
   selector: 'app-shelter-request-table',
   imports: [RouterModule],
   templateUrl: './shelter-request-table.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-request-table.component.css',
 })
 export class ShelterRequestTableComponent {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { UtilisateurInfos } from '../../models/models';
@@ -7,6 +7,7 @@ import { UtilisateurInfos } from '../../models/models';
   selector: 'app-header-logged',
   imports: [RouterModule],
   templateUrl: './header-logged.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header-logged.component.css',
 })
 export class HeaderLoggedComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-dpt-select',
@@ -107,6 +107,7 @@ import { Component } from '@angular/core';
     <option value="974">974 - La Réunion</option>
     <option value="976">976 - Mayotte</option>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   styles: '',
 })
 export class DptSelectComponent {}

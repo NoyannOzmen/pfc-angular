@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { DashboardSubNavComponent } from '../Shared/dashboard-sub-nav/dashboard-sub-nav.component';
@@ -11,6 +11,7 @@ import { ShelterService } from '../../../Shelters/shelter.service';
   selector: 'app-shelter-upload',
   imports: [RouterModule, DashboardNavComponent, DashboardSubNavComponent],
   templateUrl: './shelter-upload.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-upload.component.css',
 })
 export class ShelterUploadComponent {

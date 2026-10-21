@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth.service';
@@ -9,6 +9,7 @@ import { UserFosterService } from '../user-foster.service';
   selector: 'app-foster-profile',
   imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './foster-profile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './foster-profile.component.css',
 })
 export class FosterProfileComponent {

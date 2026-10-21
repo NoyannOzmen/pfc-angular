@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterService } from '../register.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-foster-register',
   imports: [ReactiveFormsModule],
   templateUrl: './foster-register.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './foster-register.component.css',
 })
 export class FosterRegisterComponent {

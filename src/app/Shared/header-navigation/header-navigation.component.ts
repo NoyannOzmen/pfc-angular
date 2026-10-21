@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderLoggedComponent } from '../header-logged/header-logged.component';
 import { HeaderLoginComponent } from '../header-login/header-login.component';
 import { AuthService } from '../../auth.service';
@@ -7,6 +7,7 @@ import { AuthService } from '../../auth.service';
   selector: 'app-header-navigation',
   imports: [HeaderLoggedComponent, HeaderLoginComponent],
   templateUrl: './header-navigation.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header-navigation.component.css',
 })
 export class HeaderNavigationComponent {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { ResidentSubNavComponent } from '../Shared/resident-sub-nav/resident-sub-nav.component';
@@ -12,6 +12,7 @@ import { AuthService } from '../../../auth.service';
   selector: 'app-shelter-resident-add-profile',
   imports: [RouterModule, DashboardNavComponent, ResidentSubNavComponent, ReactiveFormsModule],
   templateUrl: './shelter-resident-add-profile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-resident-add-profile.component.css',
 })
 export class ShelterResidentAddProfileComponent {

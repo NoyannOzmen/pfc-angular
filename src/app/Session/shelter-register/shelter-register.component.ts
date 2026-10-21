@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from '../register.service';
@@ -7,6 +7,7 @@ import { RegisterService } from '../register.service';
   selector: 'app-shelter-register',
   imports: [ReactiveFormsModule],
   templateUrl: './shelter-register.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-register.component.css',
 })
 export class ShelterRegisterComponent {

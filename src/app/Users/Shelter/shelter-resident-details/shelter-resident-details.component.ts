@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { ResidentSubNavComponent } from '../Shared/resident-sub-nav/resident-sub-nav.component';
@@ -11,6 +11,7 @@ import { AuthService } from '../../../auth.service';
   selector: 'app-shelter-resident-details',
   imports: [RouterModule, DashboardNavComponent, ResidentSubNavComponent],
   templateUrl: './shelter-resident-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-resident-details.component.css',
 })
 export class ShelterResidentDetailsComponent {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { AuthService } from '../../../auth.service';
@@ -10,6 +10,7 @@ import { ShelterRequestTableComponent } from '../shelter-request-table/shelter-r
   selector: 'app-shelter-request-list',
   imports: [RouterModule, DashboardNavComponent, ShelterRequestTableComponent],
   templateUrl: './shelter-request-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-request-list.component.css',
 })
 export class ShelterRequestListComponent {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardNavComponent } from '../Shared/dashboard-nav/dashboard-nav.component';
 import { ResidentSubNavComponent } from '../Shared/resident-sub-nav/resident-sub-nav.component';
@@ -11,6 +11,7 @@ import { ShelterFosteredTableComponent } from '../shelter-fostered-table/shelter
   selector: 'app-shelter-fostered-list',
   imports: [RouterModule, DashboardNavComponent, ResidentSubNavComponent, ShelterFosteredTableComponent],
   templateUrl: './shelter-fostered-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-fostered-list.component.css',
 })
 export class ShelterFosteredListComponent {

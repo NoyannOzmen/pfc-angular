@@ -3,10 +3,9 @@
   <div class="flex flex-row justify-around w-[80%] mx-auto">
     <section class="flex flex-col w-[50%]">
       <div class="font-body mx-auto w-[70%] my-4">
-        @if ( animal?.images_animal ) {
-          @for(image of animal?.images_animal; track $index) {
-          <img class="mx-auto my-2 rounded-lg"
-          [src]="image.url" alt="Photo de {{ animal?.nom }}"/>
+        @if (animal?.images_animal) {
+          @for (image of animal?.images_animal; track $index) {
+            <img class="mx-auto my-2 rounded-lg" [src]="image.url" alt="Photo de {{ animal?.nom }}" />
           }
         } @else {
           <img class="mx-auto my-2 rounded-lg" src="/images/animal_empty.webp" alt="Photo à venir" />
@@ -18,10 +17,12 @@
         </div>
 
         <div class="text-center w-full flex justify-center gap-2 py-2">
-          @for(tag of animal?.tags; track $index) {
+          @for (tag of animal?.tags; track $index) {
             <button class="group p-1 rounded-lg bg-accents1-dark text-fond text-center">
               {{ tag?.nom }}
-              <span class="group hover:block hidden z-10 bg-accents2-dark text-fond absolute px-2 py-2 text-xs rounded-b-xl rounded-tr-xl">
+              <span
+                class="group hover:block hidden z-10 bg-accents2-dark text-fond absolute px-2 py-2 text-xs rounded-b-xl rounded-tr-xl"
+              >
                 {{ tag?.description }}
               </span>
             </button>
@@ -35,8 +36,8 @@
         </div>
         <div class="text-center w-full py-2">
           <p class="font-body text-texte">Espèce : {{ animal?.espece?.nom }}</p>
-          @if ( animal?.race ) {
-          <p class="font-body text-texte">Race : {{ animal?.race }}</p>
+          @if (animal?.race) {
+            <p class="font-body text-texte">Race : {{ animal?.race }}</p>
           }
           <p class="font-body text-texte">Couleur : {{ animal?.couleur }}</p>
         </div>
@@ -48,53 +49,73 @@
           <p class="font-body text-texte">Son petit truc en plus :<br />{{ animal?.description }}</p>
         </div>
 
-        @if(isFoster) {
+        @if (isFoster) {
           <div class="text-center w-full py-2">
-            @if(userMessage) {
-              <p class="font-grands font-base text-accents1 text-center">{{userMessage}}</p>
+            @if (userMessage) {
+              <p class="font-grands font-base text-accents1 text-center">{{ userMessage }}</p>
             }
             <form>
-            <button type="button" (click)="makeRequest()" class="mx-auto my-3 py-2 px-6 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">Faire une demande</button>
+              <button
+                type="button"
+                (click)="makeRequest()"
+                class="mx-auto my-3 py-2 px-6 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Faire une demande
+              </button>
             </form>
           </div>
         }
       </article>
-
     </section>
 
     <section class="flex flex-col w-[50%] self-center">
       <article class="font-body mx-auto w-[50%] bg-zoning rounded-lg shadow my-4">
-        <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">{{ animal?.nom }}<br />vous attend chez<br />{{ animal?.refuge?.nom }}</h3>
-
+        <h3 class="font-grands text-3xl text-center my-2 pt-5 w-full">
+          {{ animal?.nom }}<br />vous attend chez<br />{{ animal?.refuge?.nom }}
+        </h3>
 
         <div class="font-body mx-auto w-[80%] rounded-lg my-4">
-          @if ( animal?.refuge?.images_association ) {
-            @for(image of animal?.refuge?.images_association; track $index) {
-              <img class="mx-auto"
-              [src]="image.url" alt="Logo de {{ animal?.refuge?.nom }}" />
+          @if (animal?.refuge?.images_association) {
+            @for (image of animal?.refuge?.images_association; track $index) {
+              <img class="mx-auto" [src]="image.url" alt="Logo de {{ animal?.refuge?.nom }}" />
             }
           } @else {
-            <img class="mx-auto" src="/images/shelter_empty.webp" alt="Logo de {{ animal?.refuge?.nom }} bientôt visible" />
+            <img
+              class="mx-auto"
+              src="/images/shelter_empty.webp"
+              alt="Logo de {{ animal?.refuge?.nom }} bientôt visible"
+            />
           }
         </div>
 
         <div class="text-center w-full py-2">
-          <p class="font-body text-texte">Adresse : {{ animal?.refuge?.rue }},<br />{{ animal?.refuge?.code_postal }},&nbsp;{{ animal?.refuge?.commune }},&nbsp;{{ animal?.refuge?.pays }}</p>
+          <p class="font-body text-texte">
+            Adresse : {{ animal?.refuge?.rue }},<br />{{ animal?.refuge?.code_postal }},&nbsp;{{
+              animal?.refuge?.commune
+            }},&nbsp;{{ animal?.refuge?.pays }}
+          </p>
           <p class="font-body text-texte">Téléphone : {{ animal?.refuge?.telephone }}</p>
-          @if ( animal?.refuge?.site ) { <p class="font-body text-texte">E-mail : {{ animal?.refuge?.site }}</p> }
-          @if ( animal?.refuge?.description ) { <p class="font-body text-texte">{{ animal?.refuge?.description }}</p> }
+          @if (animal?.refuge?.site) {
+            <p class="font-body text-texte">E-mail : {{ animal?.refuge?.site }}</p>
+          }
+          @if (animal?.refuge?.description) {
+            <p class="font-body text-texte">{{ animal?.refuge?.description }}</p>
+          }
         </div>
 
         <div class="text-center w-full py-2 my-4">
-          <a class="w-[60%] mx-auto my-3 py-2 px-4 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg" [routerLink]="['/refuges/', animal?.refuge?.id]">En savoir plus</a>
+          <a
+            class="w-[60%] mx-auto my-3 py-2 px-4 bg-accents1-light text-fond transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            [routerLink]="['/refuges/', $safeNavigationMigration(animal?.refuge?.id)]"
+            >En savoir plus</a
+          >
         </div>
       </article>
     </section>
   </div>
 
-
   <section class="p-4 py-6 block w-[80%] mx-auto">
     <h2 class="font-grands text-3xl text-center my-2">Ils vous attendent aussi chez {{ animal?.refuge?.nom }}</h2>
-       <app-carousel></app-carousel>
+    <app-carousel></app-carousel>
   </section>
 </main>

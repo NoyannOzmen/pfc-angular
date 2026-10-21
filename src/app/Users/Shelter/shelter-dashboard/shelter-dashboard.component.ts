@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth.service';
@@ -11,6 +11,7 @@ import { UserShelterService } from '../user-shelter.service';
   selector: 'app-shelter-dashboard',
   imports: [RouterModule, ReactiveFormsModule, DashboardNavComponent, DashboardSubNavComponent],
   templateUrl: './shelter-dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './shelter-dashboard.component.css',
 })
 export class ShelterDashboardComponent {

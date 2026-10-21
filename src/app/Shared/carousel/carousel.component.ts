@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AnimalService } from '../../Animals/animal.service';
 import { ShelterService } from '../../Shelters/shelter.service';
@@ -8,6 +8,7 @@ import { AnimalInfos } from '../../models/models';
   selector: 'app-carousel',
   imports: [RouterModule],
   templateUrl: './carousel.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './carousel.component.css',
 })
 export class CarouselComponent {
